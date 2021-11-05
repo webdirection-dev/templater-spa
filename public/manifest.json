@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ШАБЛОНИЗАТОР",
+  "name": "Шаблонизатор для summary-forms",
   "icons": [
     {
       "src": "favicon.ico",
