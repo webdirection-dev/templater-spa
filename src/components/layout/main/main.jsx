@@ -1,7 +1,9 @@
+import CardsList from "../../cardsList";
+
 const Main = () => {
     return(
         <div className='content container'>
-            Test
+            <CardsList />
         </div>
     )
 };
