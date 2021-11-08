@@ -1,0 +1,34 @@
+.control-title__list {
+    display: flex;
+    border: none !important;
+    width: 100%;
+    margin: 0 auto !important;
+}
+
+.control-title__item {
+    width: 33.3%;
+    border-right: 2px solid #546e7a;
+}
+
+.control-title__item:first-child {
+    border-left: 2px solid #546e7a;
+}
+
+.control-title__header {
+    padding: 0.3rem 1rem !important;
+    background-color: transparent !important;
+    border-bottom: none !important;
+    color: white !important;
+}
+
+/*.control-panel__body {*/
+/*    display: block;*/
+/*}*/
+
+.control-title__active {
+    background-color: #546e7a;
+}
+
+.control-title__active .control-title__header {
+    color: aqua !important;
+}

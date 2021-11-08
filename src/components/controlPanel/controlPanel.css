@@ -1,0 +1,50 @@
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto !important;
+}
+
+.control-panel__actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #546e7a;
+    padding: 10px 15px;
+    /*padding: 0 15px;*/
+}
+
+.control-panel__actions span:before {
+    top: 3px !important;
+}
+
+.control-panel__actions span:after {
+    border: 1px solid white !important;
+    top: 3px !important;
+}
+
+.summary {
+    width: 70%;
+}
+
+.summary-title {
+    color: white;
+}
+
+.summary-title-radio {
+    padding-left: 32px !important;
+}
+
+.summary-title-radio:before {
+    border: 1px solid white !important;
+    margin: 5px !important;
+}
+
+[type="radio"]:checked+span:before {
+    border: 2px solid transparent !important;
+}
+
+.summary-radio {
+    display: flex;
+}
