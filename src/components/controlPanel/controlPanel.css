@@ -11,7 +11,7 @@
     align-items: center;
     width: 100%;
     background-color: #546e7a;
-    padding: 10px 15px;
+    padding: 10px 15px 20px;
     /*padding: 0 15px;*/
 }
 
@@ -22,6 +22,19 @@
 .control-panel__actions span:after {
     border: 1px solid white !important;
     top: 3px !important;
+}
+
+.control-panel__main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.control-panel__header {
+    display: flex;
+    width: 100%;
+    padding: 15px 0 20px;
+    /*justify-content: space-around;*/
 }
 
 .summary {
@@ -45,6 +58,23 @@
     border: 2px solid transparent !important;
 }
 
-.summary-radio {
+.control-panel__radio {
     display: flex;
+    margin-left: 50px;
+}
+
+.select-react {
+    width: 300px;
+}
+
+.css-319lph-ValueContainer {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.css-6j8wv5-Input {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }

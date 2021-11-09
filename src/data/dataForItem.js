@@ -8,10 +8,6 @@ const DataForItem = [
         name: 'Оповещение'
     },
     {
-        icon: 'loop',
-        name: 'Апдейт'
-    },
-    {
         icon: 'lock_outline',
         name: 'Закрытие'
     }
