@@ -15,10 +15,11 @@
 }
 
 .control-title__header {
-    padding: 0.3rem 1rem !important;
+    padding: 1rem !important;
     background-color: transparent !important;
     border-bottom: none !important;
     color: white !important;
+    font-size: 17px;
 }
 
 /*.control-panel__body {*/

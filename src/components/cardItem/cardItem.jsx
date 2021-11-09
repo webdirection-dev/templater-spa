@@ -1,6 +1,3 @@
-// import {useState} from "react";
-import './cardItem.css';
-
 const CardItem = () => {
     // const [isInside, setInside] = useState(false);
     // const [isStand, setStand] = useState('prod');

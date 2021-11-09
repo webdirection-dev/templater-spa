@@ -1,3 +1,11 @@
+.classesOpen, .classesNotify, .classesClose {
+    display: none;
+}
+
+.test, .test2 {
+    display: block;
+}
+
 .control-panel {
     display: flex;
     flex-direction: column;
@@ -34,7 +42,14 @@
     display: flex;
     width: 100%;
     padding: 15px 0 20px;
-    /*justify-content: space-around;*/
+}
+
+.control-panel__footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border-top: 2px solid rgba(160,160,160,0.2);
+    padding-top: 20px;
 }
 
 .summary {
@@ -65,16 +80,4 @@
 
 .select-react {
     width: 300px;
-}
-
-.css-319lph-ValueContainer {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-.css-6j8wv5-Input {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
 }

@@ -25,7 +25,7 @@ export default ControlTitleItem;
 
 const View = ({onShowPanelItem, namePanel, nameAction}) => {
     return(
-        DataForItem.map(item => {
+        DataForItem.summary.map(item => {
             let classPanel = 'control-title__item ';
             if (item.name === namePanel || (nameAction === 'Открытие' && item.name === 'Открытие')) classPanel = classPanel + 'control-title__active'
 
