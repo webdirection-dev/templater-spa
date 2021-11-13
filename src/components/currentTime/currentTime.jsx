@@ -27,11 +27,16 @@ const CurrentTime = (props) => {
     const [isCloseChooseHour, setCloseChooseHour] = useState(false)
     const [isCloseChooseMinute, setCloseChooseMinute] = useState(false)
 
+    console.log(nowDate)
+
     let hour = nowDate.hour,
         minute = nowDate.minute;
 
-    if (hour < 10 && typeof hour === 'number') hour = `0${hour}`;
-    if (minute < 10 && typeof hour === 'number') minute = `0${minute}`;
+    //componentDidMount
+    useEffect(() => {
+        if (hour < 10 && typeof hour === 'number') hour = `0${hour}`;
+        if (minute < 10 && typeof hour === 'number') minute = `0${minute}`;
+    }, []);
 
     const onChooseHour = (event) => {
         const {className, textContent} = event.target;
@@ -144,14 +149,14 @@ const View = (props) => {
                             {
                                 chooseHour.map((item, index) => {
                                     let classesItem = 'choose-time__item'
-                                    if (String(item) === isClassHour) classesItem = classesItem + ' choose-time__item-color'
+                                    if (item === isClassHour) classesItem = classesItem + ' choose-time__item-color'
 
                                     if (index < 10) {
                                         return(
                                             <div
                                                 key={index}
                                                 className={classesItem}
-                                            >{item}</div>
+                                            >{String(item)}</div>
                                         )
                                     } else return null
                                 })
@@ -210,14 +215,14 @@ const View = (props) => {
                             {
                                 chooseMinute.map((item, index) => {
                                     let classesItem = 'choose-time__item'
-                                    if (String(item) === isClassMinute) classesItem = classesItem + ' choose-time__item-color'
+                                    if (item === isClassMinute) classesItem = classesItem + ' choose-time__item-color'
 
                                     if (index < 10) {
                                         return(
                                             <div
                                                 key={index}
                                                 className={classesItem}
-                                            >{item}</div>
+                                            >{String(item)}</div>
                                         )
                                     } else return null
                                 })
