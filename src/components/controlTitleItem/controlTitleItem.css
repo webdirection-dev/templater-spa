@@ -8,6 +8,11 @@
 .control-title__item {
     width: 33.3%;
     border-right: 2px solid #546e7a;
+    border-top: 2px solid #455a64;
+}
+
+.control-title__item:hover {
+    border-top: 2px solid aqua;
 }
 
 .control-title__item:first-child {
@@ -22,12 +27,16 @@
     font-size: 17px;
 }
 
-/*.control-panel__body {*/
-/*    display: block;*/
-/*}*/
-
 .control-title__active {
     background-color: #546e7a;
+}
+
+.control-title__active .material-icons:hover {
+    color: #ef5350;
+}
+
+.control-title__active:hover {
+    border-top: 2px solid #455a64;
 }
 
 .control-title__active .control-title__header {

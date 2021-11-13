@@ -80,12 +80,12 @@ const DataForItem = {
 
     stand: [
         {
-            label: 'Демо',
-            value: 'Демо'
-        },
-        {
             label: 'Прод',
             value: 'Прод'
+        },
+        {
+            label: 'Демо',
+            value: 'Демо'
         },
     ]
 };

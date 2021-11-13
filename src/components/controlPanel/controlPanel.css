@@ -56,18 +56,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
-    padding-right: 10px;
+    width: 28%;
+    padding-right: 15px;
 }
 
 .control-panel__time span {
     font-size: 30px;
     margin-left: 2px;
-    /*color: #26a69a;*/
 }
 
 .control-panel__data {
-    /*width: 90px;*/
+    color: white;
 }
 
 .summary {
@@ -97,5 +96,5 @@
 }
 
 .select-react {
-    width: 300px;
+    width: 28%;
 }

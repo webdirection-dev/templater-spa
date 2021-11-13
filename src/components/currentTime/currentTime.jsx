@@ -32,12 +32,6 @@ const CurrentTime = (props) => {
     let hour = nowDate.hour,
         minute = nowDate.minute;
 
-    //componentDidMount
-    useEffect(() => {
-        if (hour < 10 && typeof hour === 'number') hour = `0${hour}`;
-        if (minute < 10 && typeof hour === 'number') minute = `0${minute}`;
-    }, []);
-
     const onChooseHour = (event) => {
         const {className, textContent} = event.target;
 
@@ -71,6 +65,25 @@ const CurrentTime = (props) => {
     const onCloseChooseMinute = () => {
         setCloseChooseMinute(true)
     };
+
+    //componentDidMount
+    useEffect(() => {
+        if (hour < 10 && typeof hour === 'number') {
+            let newObj = {
+                ...nowDate,
+                hour: `0${hour}`
+            }
+            setNowDate(newObj)
+        }
+
+        if (minute < 10 && typeof hour === 'number') {
+            let newObj = {
+                ...nowDate,
+                minute: `0${minute}`
+            }
+            setNowDate(newObj)
+        }
+    }, []);
 
     //componentDidUpdate
     useEffect(() => {
