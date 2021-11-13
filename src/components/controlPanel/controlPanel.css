@@ -14,13 +14,13 @@
 }
 
 .control-panel__actions {
+    position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
     background-color: #546e7a;
-    padding: 10px 15px 20px;
-    /*padding: 0 15px;*/
+    padding: 0 25px;
 }
 
 .control-panel__actions span:before {
@@ -47,9 +47,27 @@
 .control-panel__footer {
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
     border-top: 2px solid rgba(160,160,160,0.2);
-    padding-top: 20px;
+    padding: 15px 0 20px;
+}
+
+.control-panel__time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25.4%;
+    padding-right: 10px;
+}
+
+.control-panel__time span {
+    font-size: 30px;
+    margin-left: 2px;
+    /*color: #26a69a;*/
+}
+
+.control-panel__data {
+    /*width: 90px;*/
 }
 
 .summary {

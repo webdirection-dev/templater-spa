@@ -11,7 +11,7 @@
 }
 
 .material-icons {
-    cursor: no-drop;
+    cursor: pointer;
 }
 
 .material-icons:hover {

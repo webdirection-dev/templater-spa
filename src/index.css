@@ -8,11 +8,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.hide {
+  display: none;
+}
+
 .content {
-  min-height: calc(100vh - 64px - 70px);
+  min-height: calc(100vh - 64px - 70px - 55px + 1px);
   padding: 1.5rem 0;
 }
 
 .ml-15 {
   margin-left: 15px;
 }
+
+.btn-large {
+  width: 177px;
+  height: 45px;
+  line-height: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #818181 !important;
+  background-color: white !important;
+}
+
+.btn__color-orange {
+  background-color: #26a69a !important;
+  color: black !important;
+}
+
+.btn__color-orange:hover {
+  background-color: #ef5350 !important;
+}
+
