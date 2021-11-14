@@ -6,9 +6,22 @@
 }
 
 .control-title__item {
+    position: relative;
     width: 33.3%;
     border-right: 2px solid #546e7a;
     border-top: 2px solid #455a64;
+}
+
+.control-title__close {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    color: aqua;
+}
+
+.control-title__close:hover {
+    color: #ef5350;
 }
 
 .control-title__item:hover {
@@ -29,10 +42,6 @@
 
 .control-title__active {
     background-color: #546e7a;
-}
-
-.control-title__active .material-icons:hover {
-    color: #ef5350;
 }
 
 .control-title__active:hover {

@@ -27,8 +27,6 @@ const CurrentTime = (props) => {
     const [isCloseChooseHour, setCloseChooseHour] = useState(false)
     const [isCloseChooseMinute, setCloseChooseMinute] = useState(false)
 
-    console.log(nowDate)
-
     let hour = nowDate.hour,
         minute = nowDate.minute;
 
