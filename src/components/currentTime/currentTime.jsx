@@ -18,7 +18,8 @@ for (let i = 0; i < 60; i++) {
 const CurrentTime = (props) => {
     const {
         showSetTime,
-        onShowSetTime = Function.prototype
+        onShowSetTime = Function.prototype,
+        toGetTimeFromPanel = Object.prototype,
     } = props;
 
     const [nowDate, setNowDate] = useState({hour: new Date().getHours(), minute: new Date().getMinutes()});
@@ -92,6 +93,11 @@ const CurrentTime = (props) => {
     useEffect(() => {
         if (isCloseChooseHour && isCloseChooseMinute) onShowSetTime()
     }, [isCloseChooseHour, isCloseChooseMinute])
+
+
+    useEffect(() => {
+        toGetTimeFromPanel(nowDate)
+    }, [nowDate])
 
     return(
         <View

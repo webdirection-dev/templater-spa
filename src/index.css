@@ -15,10 +15,24 @@ body {
 .content {
   min-height: calc(100vh - 64px - 70px - 55px + 1px);
   padding: 1.5rem 0;
+  width: 100% !important;
+  max-width: 98% !important;
 }
 
 .ml-15 {
   margin-left: 15px;
+}
+
+.colorAqua {
+  color: aqua;
+}
+
+.colorAqua2 {
+  color: #26a69a;
+}
+
+.height100 {
+  min-height: 100px !important;
 }
 
 .btn-large {
@@ -38,5 +52,9 @@ body {
 
 .btn__color-orange:hover {
   background-color: #ef5350 !important;
+}
+
+.mt-7 {
+  margin-top: 7px;
 }
 

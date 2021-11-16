@@ -61,8 +61,8 @@ const DataForItem = {
 
     qualities: [
         {
-            label: 'Внутренний',
-            value: 'Внутренний'
+            label: 'Россия',
+            value: ''
         },
         {
             label: 'Беларусь',
@@ -81,11 +81,11 @@ const DataForItem = {
     stand: [
         {
             label: 'Прод',
-            value: 'Прод'
+            value: 'ПРОД'
         },
         {
             label: 'Демо',
-            value: 'Демо'
+            value: 'ДЕМО'
         },
     ]
 };
