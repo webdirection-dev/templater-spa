@@ -21,6 +21,14 @@
     color: aqua;
 }
 
+.summary__body-closing span {
+    color: white;
+}
+
+.summary__body p {
+    margin: 7px 0 !important;
+}
+
 
 .summary__checkBox {
     display: flex;
@@ -70,4 +78,46 @@
 
 .summary__ops-input:focus {
     box-shadow: 0 2px 0 0 rgba(255, 255, 255, .7) !important;
+}
+
+.summary__area {
+    resize: none;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid #4db6ac;
+    border-radius: 3px;
+    color: #e0f2f1;
+    opacity: .8;
+    background-color: #455a64 !important;
+    /*background-color: #78909c !important;*/
+    padding: 3px 10px;
+}
+
+.summary__area:focus {
+    color: black;
+    background-color: white !important;
+    border-color: #ff9800;
+    opacity: unset;
+}
+
+.summary__area::placeholder {
+    color: #b2dfdb;
+    /*opacity: .3;*/
+}
+
+/*Скрыть placeholder при focus*/
+:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+:focus::-moz-placeholder {
+    color: transparent
+}
+
+:focus:-moz-placeholder {
+    color: transparent
+}
+
+:focus:-ms-input-placeholder {
+    color: transparent
 }
