@@ -1,0 +1,33 @@
+/*Библиотека react-select*/
+.select-react {
+    width: 100%;
+}
+
+.css-319lph-ValueContainer {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.css-6j8wv5-Input {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.css-26l3qy-menu {
+    z-index: 2000 !important;
+}
+
+.material-icons {
+    cursor: pointer;
+}
+
+/*materializeCSS*/
+[type="checkbox"].filled-in:not(:checked) + span:not(.lever)::after {
+    border: 1px solid white;
+}
+
+[type="checkbox"]+span:not(.lever) {
+    line-height: normal;
+}
