@@ -23,6 +23,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -70,6 +71,7 @@
       <workItem from="1636866617104" duration="293000" />
       <workItem from="1637041046130" duration="38673000" />
       <workItem from="1637144665481" duration="11531000" />
+      <workItem from="1637487903791" duration="21274000" />
     </task>
     <servers />
   </component>

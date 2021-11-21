@@ -9,6 +9,7 @@ const ControlPanel = (props) => {
     const {
         toGetDataFromPanel = Function.prototype,
         toGetTimeFromPanel = Function.prototype,
+        toGetTimeClosing = Function.prototype,
     } = props
 
     const [isQualities, setQualities] = useState(null);
@@ -20,6 +21,7 @@ const ControlPanel = (props) => {
 
     const [nameAction, setNameAction] = useState('');
     const [showSetTime, setShowSetTime] = useState(false);
+    const [isShowSetTimeClosing, setShowSetTimeClosing] = useState(false);
 
     const getNameAction = (item) => {
         setNameAction(item)
@@ -29,23 +31,35 @@ const ControlPanel = (props) => {
         setShowSetTime(!showSetTime)
     };
 
+    const onShowSetTimeClosing = () => {
+        setShowSetTimeClosing(!isShowSetTimeClosing)
+    };
+
     const openControl = (item) => {
         return(
             <FormToSummary
                 item={item}
+
                 onShowSetTime={onShowSetTime}
+                onShowSetTimeClosing={onShowSetTimeClosing}
+
                 setQualities={setQualities}
                 setStand={setStand}
                 setSelectTG={setSelectTG}
                 setSelectPriority={setSelectPriority}
                 setSelectEffect={setSelectEffect}
+
                 showSetTime={showSetTime}
+
                 isQualities={isQualities}
                 isStand={isStand}
                 isSelectTG={isSelectTG}
                 isSelectPriority={isSelectPriority}
                 isSelectEffect={isSelectEffect}
+                isShowSetTimeClosing={isShowSetTimeClosing}
+
                 toGetTimeFromPanel={toGetTimeFromPanel}
+                toGetTimeClosing={toGetTimeClosing}
             />
         )
     };
@@ -82,19 +96,26 @@ export default ControlPanel;
 const FormToSummary = (props) => {
     const {
         item,
+
         setQualities,
         setStand,
         setSelectTG,
         setSelectPriority,
         setSelectEffect,
+
         onShowSetTime,
+        onShowSetTimeClosing,
+
         showSetTime,
         isQualities,
         isStand,
         isSelectTG,
         isSelectPriority,
         isSelectEffect,
-        toGetTimeFromPanel
+        isShowSetTimeClosing,
+
+        toGetTimeFromPanel,
+        toGetTimeClosing
     } = props;
 
     let classesOpen = 'hide';
@@ -103,13 +124,20 @@ const FormToSummary = (props) => {
 
     if (item === 'Открытие') classesOpen = 'control-panel__main'
     if (item === 'Оповещение') classesNotify = 'test'
-    if (item === 'Закрытие') classesClose = 'test2'
+    if (item === 'Закрытие') classesClose = 'control-panel__main'
 
     let buttonTitle = 'Время открытия'
     let classesButton = 'btn-large'
     if (showSetTime) {
         buttonTitle = 'Свернуть выбор'
         classesButton = classesButton + ' btn__color-orange'
+    }
+
+    let buttonTitleClosing = 'Время закрытия'
+    let classesButtonClosing = 'btn-large'
+    if (isShowSetTimeClosing) {
+        buttonTitleClosing = 'Свернуть выбор'
+        classesButtonClosing = classesButtonClosing + ' btn__color-orange'
     }
 
     let classesForLabelCountry = 'hide';
@@ -218,6 +246,7 @@ const FormToSummary = (props) => {
 
                     <div className="control-panel__time">
                         <button
+                            id='btnOpening'
                             className={classesButton}
                             onClick={onShowSetTime}
                         >{buttonTitle}</button>
@@ -232,7 +261,24 @@ const FormToSummary = (props) => {
             </div>
 
             <div className={classesNotify}>Оповещение</div>
-            <div className={classesClose}>Закрытие</div>
+            <div className={classesClose}>
+                <div className="control-panel__footer control-panel__footer-closing">
+                    <div className="control-panel__time">
+                        <button
+                            id='btnClosing'
+                            className={classesButtonClosing}
+                            onClick={onShowSetTimeClosing}
+                        >{buttonTitleClosing}</button>
+
+                        <CurrentTime
+                            onShowSetTimeClosing={onShowSetTimeClosing}
+                            isShowSetTimeClosing={isShowSetTimeClosing}
+                            toGetTimeClosing={toGetTimeClosing}
+                            flagClosing={true}
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 };

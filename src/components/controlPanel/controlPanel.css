@@ -52,6 +52,10 @@
     padding: 20px 0;
 }
 
+.control-panel__footer-closing {
+    justify-content: flex-end;
+}
+
 .control-panel__select {
     position: relative;
     width: 28%;

@@ -6,9 +6,15 @@ const CardItem = (props) => {
     const {
         isDataForCard = Object.prototype,
         isTimeForCard = Object.prototype,
+        isTimeForClosing = Object.prototype,
+
         onCheckInside = Function.prototype,
         flagOpening = true,
         isInside = false,
+        getProblemForAllCards = Function.prototype,
+        isProblemForAllCards = null,
+        getOpsNumberForAllCards = Function.prototype,
+        isOpsNumberAllCards = null,
     } = props
 
     const [isChooseInside, setChooseInside] = useState(false)
@@ -17,6 +23,9 @@ const CardItem = (props) => {
     const [isNotes, setNotes] = useState('')
     const [isNotesClosing, setNotesClosing] = useState('')
     const [isWarning, setWarning] = useState(false)
+    const [isPrimary, setPrimary] = useState(false)
+    const [isInputHourForClosing, setInputHourForClosing] = useState('')
+    const [isInputMinuteForClosing, setInputMinuteForClosing] = useState('')
 
     const {
         qualities,
@@ -27,6 +36,7 @@ const CardItem = (props) => {
     } = isDataForCard
 
     const {hour, minute} = isTimeForCard
+    const {hourClosing, minuteClosing} = isTimeForClosing
 
     // Обработка входящего массива с ТГ
     let tgOut = null
@@ -48,9 +58,14 @@ const CardItem = (props) => {
 
     const onWriteInput = (event) => {
         let {name, value} = event.target
+
         if (name === 'ops' && Number(value) && value.length < 6) setOpsNumber(value)
-        if (name === 'ops' && value.length === 5) setWarning(false)
-        if (value === '') setOpsNumber(value)
+        if (name === 'ops' && value.length === 5) {
+            setWarning(false)
+            setPrimary(true)
+        }
+        if (name === 'ops' && value.length < 5) setPrimary(false)
+        if (name === 'ops' && value === '') setOpsNumber(value)
 
         if (name === 'problem') {
             setProblem(value)
@@ -63,13 +78,19 @@ const CardItem = (props) => {
         if (name === 'notesClosing') {
             setNotesClosing(value)
         }
+
+        if (name === 'hourInputForClosing') {
+            setInputHourForClosing(value)
+        }
+
+        if (name === 'minuteInputForClosing') {
+            setInputMinuteForClosing(value)
+        }
     }
 
     const onWarningForOps = (event) => {
         let {value} = event.target
         if (value.length < 5) setWarning(true)
-        // if (value.length === 5) setWarning(false)
-
     }
 
     let classesForCheckBox = 'summary__checkBox'
@@ -87,6 +108,9 @@ const CardItem = (props) => {
     let classesIfWarning = ''
     if (isWarning) classesIfWarning = 'red lighten-1'
 
+    let classesIfPrimary = 'form__input orange darken-1 summary__ops-input'
+    if (isPrimary) classesIfPrimary = 'form__input summary__ops-input summary__ops-input-colors'
+
     if (isInside) {
         inside = 'ВНУТРЕННИЙ'
         classesForCardInside = 'card-title'
@@ -97,6 +121,20 @@ const CardItem = (props) => {
         onCheckInside(isChooseInside)
     // eslint-disable-next-line
     }, [isChooseInside])
+
+    //Передать наверх данные из поля ПРОБЛЕМА
+    // componentDidUpdate
+    useEffect(() => {
+        getProblemForAllCards(isProblem)
+    // eslint-disable-next-line
+    }, [isProblem])
+
+    //Передать наверх данные из поля OPS
+    // componentDidUpdate
+    useEffect(() => {
+        getOpsNumberForAllCards(isOpsNumber)
+    // eslint-disable-next-line
+    }, [isOpsNumber])
 
     if (flagOpening) {
         return(
@@ -124,6 +162,7 @@ const CardItem = (props) => {
                 classesForCardInside={classesForCardInside}
                 classesForLabelInput={classesForLabelInput}
                 classesIfWarning={classesIfWarning}
+                classesIfPrimary={classesIfPrimary}
             />
         )
     }
@@ -132,6 +171,8 @@ const CardItem = (props) => {
         <ViewClosing
             hour={hour}
             minute={minute}
+            hourClosing={hourClosing}
+            minuteClosing={minuteClosing}
 
             inside={inside}
             stand={stand}
@@ -142,6 +183,10 @@ const CardItem = (props) => {
 
             isChooseInside={isChooseInside}
             isNotesClosing={isNotesClosing}
+            isProblemForAllCards={isProblemForAllCards}
+            isOpsNumberAllCards={isOpsNumberAllCards}
+            isInputHourForClosing={isInputHourForClosing}
+            isInputMinuteForClosing={isInputMinuteForClosing}
 
             onWriteInput={onWriteInput}
 
@@ -177,7 +222,8 @@ const ViewOpening = (props) => {
         classesForCheckBox,
         classesForCardInside,
         classesForLabelInput,
-        classesIfWarning
+        classesIfWarning,
+        classesIfPrimary,
     } = props
 
     return(
@@ -228,7 +274,7 @@ const ViewOpening = (props) => {
                         <input
                             value={isOpsNumber}
                             name='ops'
-                            className='form__input orange darken-1 summary__ops-input'
+                            className={classesIfPrimary}
                             placeholder='00000'
                             type="text"
                             onChange={onWriteInput}
@@ -257,6 +303,8 @@ const ViewClosing = (props) => {
     const {
         hour,
         minute,
+        hourClosing,
+        minuteClosing,
 
         inside,
         stand,
@@ -266,6 +314,10 @@ const ViewClosing = (props) => {
         effect,
 
         isNotesClosing,
+        isProblemForAllCards,
+        isOpsNumberAllCards,
+        isInputHourForClosing,
+        isInputMinuteForClosing,
 
         onWriteInput,
 
@@ -289,15 +341,38 @@ const ViewClosing = (props) => {
                     <p>1. Инициатор: Деп. эксплуатации</p>
                     <p>2. ТГ: <span>{tgOut}</span></p>
 
-                    <p>3. Проблема: </p>
+                    <p>3. Проблема: {isProblemForAllCards}</p>
 
                     <p>4. Приоритет: <span>{priority}</span></p>
                     <p>5. Степень влияния: <span>{effect}</span></p>
-                    <p>6. https://jira.crpt.ru/browse/OPS-</p>
+                    <p>6. https://jira.crpt.ru/browse/OPS-{isOpsNumberAllCards}</p>
 
                     <p>7. Время открытия: <span>{hour}:{minute}</span></p>
-                    <p>8. Длительность: 00ч. 00мин.</p>
-                    <p>9. Время закрытия: <span className='blue-text text-accent-1'><b>{hour}:{minute}</b></span></p>
+
+                    <div className='summary__time-inputs'>8. Длительность:
+                        <input
+                            type="text"
+                            value={isInputHourForClosing}
+                            name='hourInputForClosing'
+                            className='browser-default summary__time-input'
+                            onChange={onWriteInput}
+                            onBlur={() => {
+                                // onValidateName(firstName)
+                            }}
+                        /> час.
+                        <input
+                            type="text"
+                            value={isInputMinuteForClosing}
+                            name='minuteInputForClosing'
+                            className='browser-default summary__time-input'
+                            onChange={onWriteInput}
+                            onBlur={() => {
+                                // onValidateName(firstName)
+                            }}
+                        /> мин.
+                    </div>
+
+                    <p>9. Время закрытия: <span className='red-text text-accent-1'><b>{hourClosing}:{minuteClosing}</b></span></p>
 
                     <p>10. Примечание:</p>
                     <TextareaAutosize

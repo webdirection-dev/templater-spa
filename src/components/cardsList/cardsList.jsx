@@ -5,16 +5,27 @@ import CardItem from "../cardItem";
 
 const CardsList = (props) => {
 
+    const {
+        isDataForCard = Object.prototype,
+        isTimeForCard = Object.prototype,
+        isTimeForClosing = Object.prototype,
+    } = props
+
     const [isInside, setInside] = useState(false)
+    const [isProblemForAllCards, setProblemForAllCards] = useState(null)
+    const [isOpsNumberAllCards, setOpsNumberAllCards] = useState(null)
 
     const onCheckInside = (flag) => {
         setInside(flag)
     }
 
-    const {
-        isDataForCard = Object.prototype,
-        isTimeForCard = Object.prototype,
-    } = props
+    const getProblemForAllCards = (text) => {
+        setProblemForAllCards(text)
+    }
+
+    const getOpsNumberForAllCards = (num) => {
+        setOpsNumberAllCards(num)
+    }
 
     return(
         <div className="summary-forms">
@@ -22,6 +33,8 @@ const CardsList = (props) => {
                 isDataForCard={isDataForCard}
                 isTimeForCard={isTimeForCard}
                 onCheckInside={onCheckInside}
+                getProblemForAllCards={getProblemForAllCards}
+                getOpsNumberForAllCards={getOpsNumberForAllCards}
             />
 
             <CardItem />
@@ -31,6 +44,9 @@ const CardsList = (props) => {
                 isTimeForCard={isTimeForCard}
                 isInside={isInside}
                 flagOpening={false}
+                isProblemForAllCards={isProblemForAllCards}
+                isOpsNumberAllCards={isOpsNumberAllCards}
+                isTimeForClosing={isTimeForClosing}
             />
         </div>
     )
