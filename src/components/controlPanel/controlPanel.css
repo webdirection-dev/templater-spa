@@ -56,6 +56,40 @@
     justify-content: flex-end;
 }
 
+.control-panel__footer-notify {
+    justify-content: center;
+}
+
+.control-panel__footer-radio {
+    height: 47px;
+    padding-top: 10px;
+    margin-left: 30px;
+    color: white !important;
+}
+
+.control-panel__footer-notify span {
+    color: white !important;
+    line-height: 25px !important;
+}
+
+[type="radio"] + span::before {
+    border: 1px solid white !important;
+}
+
+.control-panel__footer-even label {
+    height: 47px;
+    margin-left: 30px;
+    padding-top: 10px;
+}
+
+.control-panel__footer-even label:first-child {
+    margin-left: 0;
+}
+
+.control-panel__footer-radio:first-child {
+    margin-left: 0;
+}
+
 .control-panel__select {
     position: relative;
     width: 28%;

@@ -17,6 +17,14 @@ const ControlPanel = (props) => {
     const [isSelectTG, setSelectTG] = useState(null);
     const [isSelectPriority, setSelectPriority] = useState(null);
     const [isSelectEffect, setSelectEffect] = useState(null);
+    const [isEven, setEven] = useState(true);
+    const [isNotifyPerson, setNotifyPerson] = useState({
+        sokolov: true,
+        balamutin: true,
+        zalygin: true,
+        novak: true,
+        suprun: true,
+    });
 
 
     const [nameAction, setNameAction] = useState('');
@@ -35,6 +43,20 @@ const ControlPanel = (props) => {
         setShowSetTimeClosing(!isShowSetTimeClosing)
     };
 
+    const onChangeInput = (event) => {
+        setEven(!isEven)
+    }
+
+    const onCheckBox = (event) => {
+        const {name} = event.target
+        const newObj = {
+            ...isNotifyPerson,
+            [name]: !isNotifyPerson[name]
+        }
+
+        setNotifyPerson(newObj)
+    }
+
     const openControl = (item) => {
         return(
             <FormToSummary
@@ -42,6 +64,8 @@ const ControlPanel = (props) => {
 
                 onShowSetTime={onShowSetTime}
                 onShowSetTimeClosing={onShowSetTimeClosing}
+                onChangeInput={onChangeInput}
+                onCheckBox={onCheckBox}
 
                 setQualities={setQualities}
                 setStand={setStand}
@@ -57,6 +81,8 @@ const ControlPanel = (props) => {
                 isSelectPriority={isSelectPriority}
                 isSelectEffect={isSelectEffect}
                 isShowSetTimeClosing={isShowSetTimeClosing}
+                isEven={isEven}
+                isNotifyPerson={isNotifyPerson}
 
                 toGetTimeFromPanel={toGetTimeFromPanel}
                 toGetTimeClosing={toGetTimeClosing}
@@ -105,6 +131,8 @@ const FormToSummary = (props) => {
 
         onShowSetTime,
         onShowSetTimeClosing,
+        onChangeInput,
+        onCheckBox,
 
         showSetTime,
         isQualities,
@@ -113,6 +141,8 @@ const FormToSummary = (props) => {
         isSelectPriority,
         isSelectEffect,
         isShowSetTimeClosing,
+        isEven,
+        isNotifyPerson,
 
         toGetTimeFromPanel,
         toGetTimeClosing
@@ -123,7 +153,7 @@ const FormToSummary = (props) => {
     let classesClose = 'hide';
 
     if (item === 'Открытие') classesOpen = 'control-panel__main'
-    if (item === 'Оповещение') classesNotify = 'test'
+    if (item === 'Оповещение') classesNotify = 'control-panel__main'
     if (item === 'Закрытие') classesClose = 'control-panel__main'
 
     let buttonTitle = 'Время открытия'
@@ -154,6 +184,12 @@ const FormToSummary = (props) => {
 
     let classesForLabelEffect = 'hide';
     if (isSelectEffect !== null) classesForLabelEffect = 'control-panel__label'
+
+    let classesForNotifyPersonEven = 'hide';
+    if (isEven) classesForNotifyPersonEven = 'control-panel__footer-even'
+
+    let classesForNotifyPersonEdd = 'hide';
+    if (!isEven) classesForNotifyPersonEdd = 'control-panel__footer-even'
 
     return (
         <div className='control-panel__actions'>
@@ -194,6 +230,22 @@ const FormToSummary = (props) => {
                         />
                     </div>
 
+                    <div className="control-panel__time">
+                        <button
+                            id='btnOpening'
+                            className={classesButton}
+                            onClick={onShowSetTime}
+                        >{buttonTitle}</button>
+
+                        <CurrentTime
+                            showSetTime={showSetTime}
+                            onShowSetTime={onShowSetTime}
+                            toGetTimeFromPanel={toGetTimeFromPanel}
+                        />
+                    </div>
+                </div>
+
+                <div className="control-panel__footer">
                     <div className="control-panel__select">
                         <label
                             htmlFor='tg'
@@ -209,9 +261,7 @@ const FormToSummary = (props) => {
                             noOptionsMessage={() => 'ТГ не найдена'}
                         />
                     </div>
-                </div>
 
-                <div className="control-panel__footer">
                     <div className="control-panel__select">
                         <label
                             htmlFor='priority'
@@ -244,23 +294,110 @@ const FormToSummary = (props) => {
                         />
                     </div>
 
-                    <div className="control-panel__time">
-                        <button
-                            id='btnOpening'
-                            className={classesButton}
-                            onClick={onShowSetTime}
-                        >{buttonTitle}</button>
+                    {/*<div className="control-panel__time">*/}
+                    {/*    <button*/}
+                    {/*        id='btnOpening'*/}
+                    {/*        className={classesButton}*/}
+                    {/*        onClick={onShowSetTime}*/}
+                    {/*    >{buttonTitle}</button>*/}
 
-                        <CurrentTime
-                            showSetTime={showSetTime}
-                            onShowSetTime={onShowSetTime}
-                            toGetTimeFromPanel={toGetTimeFromPanel}
-                        />
-                    </div>
+                    {/*    <CurrentTime*/}
+                    {/*        showSetTime={showSetTime}*/}
+                    {/*        onShowSetTime={onShowSetTime}*/}
+                    {/*        toGetTimeFromPanel={toGetTimeFromPanel}*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
             </div>
 
-            <div className={classesNotify}>Оповещение</div>
+            <div className={classesNotify}>
+                <div className="control-panel__footer control-panel__footer-notify">
+                    <div className='control-panel__footer-radio'>
+                        <label>
+                            <input
+                                name="whoNotify"
+                                type="radio"
+                                checked={isEven}
+                                value='even'
+                                // className='form__input form__input-checkbox'
+                                onChange={onChangeInput}
+                            />
+                            <span>Чётные дии</span>
+                        </label>
+                    </div>
+                    <div className='control-panel__footer-radio'>
+                        <label>
+                            <input
+                                name="whoNotify"
+                                type="radio"
+                                checked={!isEven}
+                                value='odd'
+                                // className='form__input form__input-checkbox'
+                                onChange={onChangeInput}
+                            />
+                            <span>Нечётные дии</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div className="control-panel__footer control-panel__footer-notify control-panel__footer-even">
+                    <label>
+                        <input
+                            type="checkbox"
+                            className="filled-in"
+                            name='sokolov'
+                            checked={isNotifyPerson.sokolov}
+                            onChange={onCheckBox}
+                        />
+                        <span>Андрей Соколов</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            className="filled-in"
+                            name='balamutin'
+                            checked={isNotifyPerson.balamutin}
+                            onChange={onCheckBox}
+                        />
+                        <span>Анатолий Баламутин</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            className="filled-in"
+                            name='zalygin'
+                            checked={isNotifyPerson.zalygin}
+                            onChange={onCheckBox}
+                        />
+                        <span>Михаил Залыгин</span>
+                    </label>
+
+                    <label className={classesForNotifyPersonEven}>
+                        <input
+                            type="checkbox"
+                            className="filled-in"
+                            name='novak'
+                            checked={isNotifyPerson.novak}
+                            onChange={onCheckBox}
+                        />
+                        <span>Владислав Новак</span>
+                    </label>
+
+                    <label className={classesForNotifyPersonEdd}>
+                        <input
+                            type="checkbox"
+                            className="filled-in"
+                            name='suprun'
+                            checked={isNotifyPerson.suprun}
+                            onChange={onCheckBox}
+                        />
+                        <span>Иван Супрун</span>
+                    </label>
+                </div>
+                </div>
+
             <div className={classesClose}>
                 <div className="control-panel__footer control-panel__footer-closing">
                     <div className="control-panel__time">

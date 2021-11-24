@@ -87,6 +87,29 @@ const DataForItem = {
             label: 'Демо',
             value: 'ДЕМО'
         },
+    ],
+
+    notifyPerson: [
+        {
+            name: 'sokolov',
+            userName: '@AndreySokolov83'
+        },
+        {
+            name: 'balamutin',
+            userName: '@dezm0d'
+        },
+        {
+            name: 'zalygin',
+            userName: '@mishanyazal'
+        },
+        {
+            name: 'novak',
+            userName: '@crpt_novak'
+        },
+        {
+            name: 'suprun',
+            userName: '@lacronn'
+        },
     ]
 };
 
