@@ -15,12 +15,15 @@ const CardItem = (props) => {
         isProblemForAllCards = null,
         getOpsNumberForAllCards = Function.prototype,
         isOpsNumberAllCards = null,
+        getWhoNotify = Function.prototype,
+        isWhoNotifyForClosing = null
     } = props
 
     const [isChooseInside, setChooseInside] = useState(false)
     const [isOpsNumber, setOpsNumber] = useState('')
     const [isProblem, setProblem] = useState('')
     const [isNotes, setNotes] = useState('')
+    const [isWhoNotify, setWhoNotify] = useState('')
     const [isNotesClosing, setNotesClosing] = useState('')
     const [isWarning, setWarning] = useState(false)
     const [isPrimary, setPrimary] = useState(false)
@@ -73,6 +76,10 @@ const CardItem = (props) => {
 
         if (name === 'notes') {
             setNotes(value)
+        }
+
+        if (name === 'whoIsNotify') {
+            setWhoNotify(value)
         }
 
         if (name === 'notesClosing') {
@@ -129,6 +136,13 @@ const CardItem = (props) => {
     // eslint-disable-next-line
     }, [isProblem])
 
+    //Передать наверх данные из поля КТО ОПОВЕЩЕН
+    // componentDidUpdate
+    useEffect(() => {
+        getWhoNotify(isWhoNotify)
+    // eslint-disable-next-line
+    }, [isWhoNotify])
+
     //Передать наверх данные из поля OPS
     // componentDidUpdate
     useEffect(() => {
@@ -153,6 +167,7 @@ const CardItem = (props) => {
                 isProblem={isProblem}
                 isOpsNumber={isOpsNumber}
                 isNotes={isNotes}
+                isWhoNotify={isWhoNotify}
 
                 onChooseInside={onChooseInside}
                 onWriteInput={onWriteInput}
@@ -187,6 +202,7 @@ const CardItem = (props) => {
             isOpsNumberAllCards={isOpsNumberAllCards}
             isInputHourForClosing={isInputHourForClosing}
             isInputMinuteForClosing={isInputMinuteForClosing}
+            isWhoNotifyForClosing={isWhoNotifyForClosing}
 
             onWriteInput={onWriteInput}
 
@@ -214,6 +230,7 @@ const ViewOpening = (props) => {
         isProblem,
         isOpsNumber,
         isNotes,
+        isWhoNotify,
 
         onChooseInside,
         onWriteInput,
@@ -233,7 +250,7 @@ const ViewOpening = (props) => {
                 <div className={classesForCheckBox}>
                     <div className="summary__checkbox-content">
                         <span className={classesForCardInside}>{inside}</span>
-                        <span className="card-title">НОВЫЙ Инцидент</span>
+                        <span className="card-title">Инцидент ОТКРЫТ</span>
                     </div>
 
                     <label className={classesForLabelInput}>
@@ -253,24 +270,22 @@ const ViewOpening = (props) => {
 
             <div className="card-action">
                 <div className="summary__body">
-                    <p>1. Инициатор: Деп. эксплуатации</p>
-                    <p>2. ТГ: <span>{tgOut}</span></p>
-
-                    <p>3. Проблема: </p>
 
                     <TextareaAutosize
                         className='summary__area'
                         value={isProblem}
                         name="problem"
-                        placeholder='Добавить описание...'
+                        placeholder='Описание проблемы...'
                         onChange={onWriteInput}
                     />
 
-                    <p>4. Приоритет: <span>{priority}</span></p>
-                    <p>5. Степень влияния: <span>{effect}</span></p>
+                    <p>ТГ: <span>{tgOut}</span></p>
+
+                    <p>Приоритет: <span>{priority}</span></p>
+                    <p>Степень влияния: <span>{effect}</span></p>
 
                     <div className="summary__ops">
-                        <p className={classesIfWarning}>6. https://jira.crpt.ru/browse/OPS-</p>
+                        <p className={classesIfWarning}>https://jira.crpt.ru/browse/OPS-</p>
                         <input
                             value={isOpsNumber}
                             name='ops'
@@ -282,15 +297,24 @@ const ViewOpening = (props) => {
                         />
                     </div>
 
-                    <p>7. Время открытия: <span className='blue-text text-accent-1'><b>{hour}:{minute}</b></span></p>
-                    <p>8. Планируемое время решения: 1 час</p>
+                    <p>Время инцидента: <span className='blue-text text-accent-1'><b>{hour}:{minute}</b></span></p>
 
-                    <p>9. Примечание:</p>
+                    <div className='summary__whoIsNotify'>
+                        <div className='summary__whoIsNotify-title'>Кто оповещён:</div>
+                        <TextareaAutosize
+                        className='summary__area'
+                        value={isWhoNotify}
+                        name="whoIsNotify"
+                        onChange={onWriteInput}
+                    /></div>
+
+                    <p>Примечание:</p>
+
                     <TextareaAutosize
                         className='summary__area'
                         value={isNotes}
                         name="notes"
-                        placeholder='Добавить описание...'
+                        placeholder='Решение проблемы...'
                         onChange={onWriteInput}
                     />
                 </div>
@@ -318,6 +342,7 @@ const ViewClosing = (props) => {
         isOpsNumberAllCards,
         isInputHourForClosing,
         isInputMinuteForClosing,
+        isWhoNotifyForClosing,
 
         onWriteInput,
 
@@ -330,7 +355,7 @@ const ViewClosing = (props) => {
 
                 <div className="summary__checkbox-content">
                     <span className={classesForCardInside}>{inside}</span>
-                    <span className="card-title">Инцидент закрыт</span>
+                    <span className="card-title">Инцидент ЗАКРЫТ</span>
                 </div>
 
                 <span className="card-title"><span>{stand}</span> <span>{qualities}</span></span>
@@ -338,52 +363,60 @@ const ViewClosing = (props) => {
 
             <div className="card-action">
                 <div className="summary__body summary__body-closing">
-                    <p>1. Инициатор: Деп. эксплуатации</p>
-                    <p>2. ТГ: <span>{tgOut}</span></p>
+                    <p>{isProblemForAllCards}</p>
 
-                    <p>3. Проблема: {isProblemForAllCards}</p>
+                    <p>ТГ: <span>{tgOut}</span></p>
 
-                    <p>4. Приоритет: <span>{priority}</span></p>
-                    <p>5. Степень влияния: <span>{effect}</span></p>
-                    <p>6. https://jira.crpt.ru/browse/OPS-{isOpsNumberAllCards}</p>
+                    <p>Приоритет: <span>{priority}</span></p>
+                    <p>Степень влияния: <span>{effect}</span></p>
+                    <p>https://jira.crpt.ru/browse/OPS-{isOpsNumberAllCards}</p>
 
-                    <p>7. Время открытия: <span>{hour}:{minute}</span></p>
+                    <div>Время инцидента: <span>{hour}:{minute}</span> - <span className='red-text text-accent-1'><b>{hourClosing}:{minuteClosing}</b></span> (<ViewTmeClosing
+                        isInputHourForClosing={isInputHourForClosing}
+                        isInputMinuteForClosing={isInputMinuteForClosing}
+                        onWriteInput={onWriteInput}
+                    />)</div>
 
-                    <div className='summary__time-inputs'>8. Длительность:
-                        <input
-                            type="text"
-                            value={isInputHourForClosing}
-                            name='hourInputForClosing'
-                            className='browser-default summary__time-input'
-                            onChange={onWriteInput}
-                            onBlur={() => {
-                                // onValidateName(firstName)
-                            }}
-                        /> час.
-                        <input
-                            type="text"
-                            value={isInputMinuteForClosing}
-                            name='minuteInputForClosing'
-                            className='browser-default summary__time-input'
-                            onChange={onWriteInput}
-                            onBlur={() => {
-                                // onValidateName(firstName)
-                            }}
-                        /> мин.
-                    </div>
+                    <p>Кто оповещен: <span>{isWhoNotifyForClosing}</span></p>
 
-                    <p>9. Время закрытия: <span className='red-text text-accent-1'><b>{hourClosing}:{minuteClosing}</b></span></p>
-
-                    <p>10. Примечание:</p>
+                    <p>Примечание:</p>
                     <TextareaAutosize
                         className='summary__area'
                         value={isNotesClosing}
                         name="notesClosing"
-                        placeholder='Добавить описание...'
+                        placeholder='Решение проблемы...'
                         onChange={onWriteInput}
                     />
                 </div>
             </div>
+        </div>
+    )
+}
+
+const ViewTmeClosing = (props) => {
+    const {
+        isInputHourForClosing,
+        isInputMinuteForClosing,
+
+        onWriteInput
+    } = props
+
+    return(
+        <div className='summary__time-inputs'>
+            <input
+                type="text"
+                value={isInputHourForClosing}
+                name='hourInputForClosing'
+                className='browser-default summary__time-input'
+                onChange={onWriteInput}
+            /> час.
+            <input
+                type="text"
+                value={isInputMinuteForClosing}
+                name='minuteInputForClosing'
+                className='browser-default summary__time-input'
+                onChange={onWriteInput}
+            /> мин.
         </div>
     )
 }

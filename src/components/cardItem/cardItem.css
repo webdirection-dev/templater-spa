@@ -94,8 +94,9 @@
 }
 
 .summary__time-inputs {
-    display: flex;
-    justify-content: flex-start;
+    display: inline;
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
 }
 
 .summary__time-input {
@@ -106,7 +107,7 @@
 }
 
 .summary__time-input:first-child {
-    margin-left: 7px;
+    /*margin-left: 7px;*/
 }
 
 .summary__area {
@@ -132,6 +133,17 @@
 .summary__area::placeholder {
     color: #b2dfdb;
     /*opacity: .3;*/
+}
+
+.summary__whoIsNotify {
+    display: flex;
+    /*width: 70%;*/
+    flex-shrink: 0;
+}
+
+.summary__whoIsNotify-title {
+    flex-shrink: 0;
+    margin-right: 15px;
 }
 
 /*Скрыть placeholder при focus*/

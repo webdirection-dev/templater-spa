@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {useEffect, useState} from "react";
 import './currentTime.css';
 
@@ -46,8 +45,8 @@ const CurrentTime = (props) => {
         minute = nowDate.minute;
 
     // Время закрытия
-    let hourClosing = isTimeClosing.hourClosing,
-        minuteClosing = isTimeClosing.minuteClosing;
+    let hourClosingToShowAtMenu = isTimeClosing.hourClosing,
+        minuteClosingToShowAtMenu = isTimeClosing.minuteClosing;
 
     const onChooseHour = (event) => {
         const {className, textContent} = event.target;
@@ -112,34 +111,65 @@ const CurrentTime = (props) => {
             setNowDate(newObj)
         }
 
-        if (minute < 10 && typeof hour === 'number') {
+        if ((minute < 10 && typeof minute === 'number') && (minute < 10)) {
+            let newObj = {
+                ...nowDate,
+                hour: `0${hour}`,
+                minute: `0${minute}`
+            }
+            setNowDate(newObj)
+        }
+
+        if ((minute < 10 && typeof minute === 'number') && (hour >= 10)) {
             let newObj = {
                 ...nowDate,
                 minute: `0${minute}`
             }
             setNowDate(newObj)
         }
+
+        // if (minute < 10 && typeof minute === 'number') {
+        //     let newObj = {
+        //         ...nowDate,
+        //         // hour: `0${hour}`,
+        //         minute: `0${minute}`
+        //     }
+        //     setNowDate(newObj)
+        // }
+    // eslint-disable-next-line
     }, []);
 
     // componentDidMount
     // Инициализация времени закрытия
-    useEffect(() => {
-        if (hourClosing < 10 && typeof hour === 'number') {
-            let newObj = {
-                ...nowDate,
-                hourClosing: `0${hour +1}`
+        useEffect(() => {
+            if (hourClosingToShowAtMenu < 10 && typeof hourClosingToShowAtMenu === 'number') {
+                let newObjClose = {
+                    ...isTimeClosing,
+                    hourClosing: `0${hour +1}`
+                }
+                setTimeClosing(newObjClose)
             }
-            setTimeClosing(newObj)
-        }
 
-        if (minuteClosing < 10 && typeof hour === 'number') {
-            let newObj = {
-                ...nowDate,
-                minuteClosing: `0${minute}`
+            if ((minuteClosingToShowAtMenu < 10 && typeof minuteClosingToShowAtMenu === 'number') && (hourClosingToShowAtMenu < 10)) {
+                let newObjClose = {
+                    ...isTimeClosing,
+                    hourClosing: `0${hour +1}`,
+                    minuteClosing: `0${minute}`
+                }
+                setTimeClosing(newObjClose)
             }
-            setTimeClosing(newObj)
-        }
-    }, []);
+
+            if ((minuteClosingToShowAtMenu < 10 && typeof minute === 'number') && (hourClosingToShowAtMenu >= 10)) {
+                let newObjClose = {
+                    ...isTimeClosing,
+                    minuteClosing: `0${minute}`
+                }
+                setTimeClosing(newObjClose)
+            }
+            // eslint-disable-next-line
+        }, []);
+
+    // console.log(isTimeClosing)
 
     //componentDidUpdate
     // Закрывает панель выбора времени по крестикам
@@ -153,29 +183,35 @@ const CurrentTime = (props) => {
     // Закрыть панель с выбором часа и минуты во вкладке открытие
     useEffect(() => {
         if (isCloseChooseHour && isCloseChooseMinute) onShowSetTime()
+        // eslint-disable-next-line
     }, [isCloseChooseHour, isCloseChooseMinute])
 
     // Закрыть панель с выбором часа и мнуты во вкладке Закрытие
     useEffect(() => {
         if (isCloseChooseHour && isCloseChooseMinute) onShowSetTimeClosing()
+        // eslint-disable-next-line
     }, [isCloseChooseHour, isCloseChooseMinute])
 
     // Поднять наерх время открытия
     useEffect(() => {
         toGetTimeFromPanel(nowDate)
+        // eslint-disable-next-line
     }, [nowDate])
 
     // Поднять наерх время закрытия
     useEffect(() => {
         toGetTimeClosing(isTimeClosing)
+        // eslint-disable-next-line
     }, [isTimeClosing])
 
     return(
         <View
             hour={hour}
             minute={minute}
-            hourClosing={hourClosing}
-            minuteClosing={minuteClosing}
+            hourClosingToShowAtMenu={hourClosingToShowAtMenu}
+            minuteClosingToShowAtMenu={minuteClosingToShowAtMenu}
+            // hourClosing={hourClosing}
+            // minuteClosing={minuteClosing}
 
             showSetTime={showSetTime}
             isShowSetTimeClosing={isShowSetTimeClosing}
@@ -203,8 +239,10 @@ const View = (props) => {
     const {
         hour,
         minute,
-        hourClosing,
-        minuteClosing,
+        // hourClosing,
+        hourClosingToShowAtMenu,
+        minuteClosingToShowAtMenu,
+        // minuteClosing,
 
         showSetTime,
         isShowSetTimeClosing,
@@ -235,8 +273,10 @@ const View = (props) => {
     let showHour = hour
     let showMinute = minute
     if (flagClosing) {
-        showHour = hourClosing
-        showMinute = minuteClosing
+        // showHour = hourClosing
+        showHour = hourClosingToShowAtMenu
+        showMinute = minuteClosingToShowAtMenu
+        // showMinute = minuteClosing
         classesForClock = 'control-panel__data red-text text-accent-1'
     }
 

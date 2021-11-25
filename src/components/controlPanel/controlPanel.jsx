@@ -10,6 +10,7 @@ const ControlPanel = (props) => {
         toGetDataFromPanel = Function.prototype,
         toGetTimeFromPanel = Function.prototype,
         toGetTimeClosing = Function.prototype,
+        toGetNotifyPerson = Function.prototype,
     } = props
 
     const [isQualities, setQualities] = useState(null);
@@ -23,9 +24,8 @@ const ControlPanel = (props) => {
         balamutin: true,
         zalygin: true,
         novak: true,
-        suprun: true,
+        suprun: false,
     });
-
 
     const [nameAction, setNameAction] = useState('');
     const [showSetTime, setShowSetTime] = useState(false);
@@ -103,6 +103,36 @@ const ControlPanel = (props) => {
         )
         // eslint-disable-next-line
     }, [isQualities, isStand, isSelectTG, isSelectPriority, isSelectEffect])
+
+    // componentDidUpdate
+    // Контролирует состояние персон оповещения в зависимости от чет/нечет
+    useEffect(() => {
+        let newObj = {}
+
+        if (isEven) {
+             newObj = {
+                ...isNotifyPerson,
+                suprun: false,
+                novak: true
+            }
+        } else {
+            newObj = {
+                ...isNotifyPerson,
+                suprun: true,
+                novak: false
+            }
+        }
+
+        setNotifyPerson(newObj)
+    // eslint-disable-next-line
+    }, [isEven])
+
+    // componentDidUpdate
+    // передать наверх данные об оповещаемых персонах
+    useEffect(() => {
+        toGetNotifyPerson(isNotifyPerson)
+    // eslint-disable-next-line
+    }, [isNotifyPerson])
 
     return(
         <div className='control-panel'>
@@ -293,20 +323,6 @@ const FormToSummary = (props) => {
                             placeholder='Влияние'
                         />
                     </div>
-
-                    {/*<div className="control-panel__time">*/}
-                    {/*    <button*/}
-                    {/*        id='btnOpening'*/}
-                    {/*        className={classesButton}*/}
-                    {/*        onClick={onShowSetTime}*/}
-                    {/*    >{buttonTitle}</button>*/}
-
-                    {/*    <CurrentTime*/}
-                    {/*        showSetTime={showSetTime}*/}
-                    {/*        onShowSetTime={onShowSetTime}*/}
-                    {/*        toGetTimeFromPanel={toGetTimeFromPanel}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                 </div>
             </div>
 
@@ -319,10 +335,9 @@ const FormToSummary = (props) => {
                                 type="radio"
                                 checked={isEven}
                                 value='even'
-                                // className='form__input form__input-checkbox'
                                 onChange={onChangeInput}
                             />
-                            <span>Чётные дии</span>
+                            <span>Чётные дни</span>
                         </label>
                     </div>
                     <div className='control-panel__footer-radio'>
@@ -332,10 +347,9 @@ const FormToSummary = (props) => {
                                 type="radio"
                                 checked={!isEven}
                                 value='odd'
-                                // className='form__input form__input-checkbox'
                                 onChange={onChangeInput}
                             />
-                            <span>Нечётные дии</span>
+                            <span>Нечётные дни</span>
                         </label>
                     </div>
                 </div>

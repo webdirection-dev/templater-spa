@@ -80,6 +80,7 @@
     height: 47px;
     margin-left: 30px;
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .control-panel__footer-even label:first-child {
