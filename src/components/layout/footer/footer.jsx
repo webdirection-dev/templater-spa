@@ -4,7 +4,7 @@ const Footer = () => {
             <div className="footer-copyright">
                 <div className="container">
                     DUTY © {new Date().getFullYear()}
-                    <a className="grey-text text-lighten-4 right" href="https://github.com/webdirection-dev/templater-spa">Repo</a>
+                    <a className="grey-text text-lighten-4 right" href="!#">Confluence</a>
                 </div>
             </div>
         </footer>

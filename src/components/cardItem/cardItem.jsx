@@ -16,7 +16,10 @@ const CardItem = (props) => {
         getOpsNumberForAllCards = Function.prototype,
         isOpsNumberAllCards = null,
         getWhoNotify = Function.prototype,
-        isWhoNotifyForClosing = null
+        isWhoNotifyForClosing = null,
+        toGetDataNotes = Function.prototype,
+        toGetDurationIncident = Function.prototype,
+        toNotesClosingOut = Function.prototype,
     } = props
 
     const [isChooseInside, setChooseInside] = useState(false)
@@ -124,6 +127,7 @@ const CardItem = (props) => {
     }
 
     // componentDidUpdate
+    // Поднять наверх ВНУТРЕННИЙ или нет
     useEffect(() => {
         onCheckInside(isChooseInside)
     // eslint-disable-next-line
@@ -149,6 +153,27 @@ const CardItem = (props) => {
         getOpsNumberForAllCards(isOpsNumber)
     // eslint-disable-next-line
     }, [isOpsNumber])
+
+
+    //Передать наверх данные из поля Примечание Открытия
+    useEffect(() => {
+        toGetDataNotes(isNotes)
+    // eslint-disable-next-line
+    }, [isNotes])
+
+    //Передать наверх длительность инцидента
+    useEffect(() => {
+        toGetDurationIncident({hourClosing: isInputHourForClosing, minuteClosing: isInputMinuteForClosing})
+        // eslint-disable-next-line
+    }, [isInputHourForClosing, isInputMinuteForClosing])
+
+    //Передать наверх примечание Закрытия
+    useEffect(() => {
+        toNotesClosingOut(isNotesClosing)
+        // eslint-disable-next-line
+    }, [isNotesClosing])
+
+
 
     if (flagOpening) {
         return(

@@ -1,4 +1,5 @@
 body {
+  position: relative;
   margin: 0;
   background-color: #78909c;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,10 +14,14 @@ body {
 }
 
 .content {
-  min-height: calc(100vh - 64px - 70px - 55px + 1px);
+  min-height: calc(100vh - 64px - 70px - 55px - 76px + 1px);
   padding: 1.5rem 0;
   width: 100% !important;
   max-width: 98% !important;
+}
+
+.app__body-overflow {
+  overflow: hidden;
 }
 
 .ml-15 {
@@ -56,5 +61,9 @@ body {
 
 .mt-7 {
   margin-top: 7px;
+}
+
+.pulse::before {
+  animation: pulse-animation 3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
 }
 

@@ -260,22 +260,6 @@ const FormToSummary = (props) => {
                         />
                     </div>
 
-                    <div className="control-panel__time">
-                        <button
-                            id='btnOpening'
-                            className={classesButton}
-                            onClick={onShowSetTime}
-                        >{buttonTitle}</button>
-
-                        <CurrentTime
-                            showSetTime={showSetTime}
-                            onShowSetTime={onShowSetTime}
-                            toGetTimeFromPanel={toGetTimeFromPanel}
-                        />
-                    </div>
-                </div>
-
-                <div className="control-panel__footer">
                     <div className="control-panel__select">
                         <label
                             htmlFor='tg'
@@ -291,7 +275,9 @@ const FormToSummary = (props) => {
                             noOptionsMessage={() => 'ТГ не найдена'}
                         />
                     </div>
+                </div>
 
+                <div className="control-panel__footer">
                     <div className="control-panel__select">
                         <label
                             htmlFor='priority'
@@ -321,6 +307,20 @@ const FormToSummary = (props) => {
                             onChange={setSelectEffect}
                             options={DataForItem.effect}
                             placeholder='Влияние'
+                        />
+                    </div>
+
+                    <div className="control-panel__time">
+                        <button
+                            id='btnOpening'
+                            className={classesButton}
+                            onClick={onShowSetTime}
+                        >{buttonTitle}</button>
+
+                        <CurrentTime
+                            showSetTime={showSetTime}
+                            onShowSetTime={onShowSetTime}
+                            toGetTimeFromPanel={toGetTimeFromPanel}
                         />
                     </div>
                 </div>

@@ -6,7 +6,7 @@ const Header = () => {
             <div className="nav-wrapper">
                 <a href="./" className="brand-logo">DUTY</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li><a href="https://jira.crpt.ru/browse/OSISDUTY-167">JIRA</a></li>
+                    <li><a href="https://jira.crpt.ru/secure/CreateIssue!default.jspa" target="_blank" rel="noreferrer">Создать в JIRA</a></li>
                 </ul>
             </div>
         </nav>

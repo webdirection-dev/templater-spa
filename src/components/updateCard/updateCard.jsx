@@ -1,9 +1,12 @@
 import TextareaAutosize from "react-textarea-autosize";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const UpdateCard = (props) => {
     const {stand, qualities} = props.isDataForCard
-    const {isInside} = props
+    const {
+        isInside,
+        toGetDataUpdate = Function.prototype
+    } = props
 
     const [isNotesUpdate, setNotesUpdate] = useState('')
 
@@ -20,6 +23,13 @@ const UpdateCard = (props) => {
 
         setNotesUpdate(value)
     }
+
+    //componentDidUpdate
+    //передать наверх данные из INPUT update
+    useEffect(() => {
+        toGetDataUpdate(isNotesUpdate)
+    // eslint-disable-next-line
+    }, [isNotesUpdate])
 
     return(
         <div className="card blue-grey darken-1">

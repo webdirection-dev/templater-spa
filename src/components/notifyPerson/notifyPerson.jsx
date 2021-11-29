@@ -1,9 +1,11 @@
 import './notifyPerson.css'
+import {useEffect} from "react";
 
 const NotifyPerson = (props) => {
     const {
         isNotifyPerson = Array.prototype,
-        isDataForCard = Object.prototype
+        isDataForCard = Object.prototype,
+        toGetNotesForPerson = Function.prototype
     } = props
 
     let priority = null
@@ -19,6 +21,19 @@ const NotifyPerson = (props) => {
 
     if (priority === null) pre = 'об'
     if (priority === null &&  effect !== null) pre = 'о'
+
+    //componentDidUpdate
+    //передадим наверх строку сообщения для великой четверки
+    useEffect(() => {
+        let priorityOut = ''
+        let effectOut = ''
+
+        if (priority !== null) priorityOut = ` ${priority}`
+        if (effect !== null) effectOut = ` ${effect}`
+
+        toGetNotesForPerson(`Оповещаем ${pre}${priorityOut}${effectOut} инциденте`)
+    // eslint-disable-next-line
+    }, [pre, priority, effect])
 
 
     return(
