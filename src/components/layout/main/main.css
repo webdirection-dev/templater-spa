@@ -74,7 +74,7 @@
 }
 
 .main__action-btn:hover {
-    filter: brightness(120%) !important;
+    filter: brightness(75%) !important;
 }
 
 .main__action-btn i {
