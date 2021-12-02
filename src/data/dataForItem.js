@@ -130,10 +130,6 @@ const DataForItem = {
 
     qualities: [
         {
-            label: 'Россия',
-            value: ''
-        },
-        {
             label: 'Беларусь',
             value: 'Республика Беларусь'
         },

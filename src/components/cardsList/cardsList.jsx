@@ -4,6 +4,7 @@ import './cardsList.css';
 import CardItem from "../cardItem";
 import NotifyPerson from "../notifyPerson";
 import UpdateCard from "../updateCard";
+import Alert from "../table/alert";
 
 const CardsList = (props) => {
 
@@ -22,12 +23,36 @@ const CardsList = (props) => {
         toGetDataUpdate = Function.prototype,
         toGetDurationIncident = Function.prototype,
         toNotesClosingOut = Function.prototype,
+
+        isCopyOpening = '',
+        isCopyClosing = '',
+        isCopyNotify = '',
+        isCopyUpdate = '',
     } = props
 
     const [isInside, setInside] = useState(false)
     const [isProblemForAllCards, setProblemForAllCards] = useState(null)
     const [isOpsNumberAllCards, setOpsNumberAllCards] = useState(null)
     const [isWhoNotifyForClosing, setWhoNotifyForClosing] = useState(null)
+    const [isAlert, setAlert] = useState(false)
+
+    const toGetAlert = () => {
+        setAlert(true)
+    }
+
+    const closeAlert = () => {
+        setAlert(false)
+    }
+
+    // componentDidUpdate
+    // изчезновение алерта Скопировано в буфер
+    useEffect(() => {
+        const timerId = setTimeout(() => closeAlert(), 3000);
+
+        // componentDidUnmount
+        return () => clearTimeout(timerId)
+        // eslint-disable-next-line
+    }, [isAlert]);
 
     const onCheckInside = (flag) => {
         setInside(flag)
@@ -86,6 +111,10 @@ const CardsList = (props) => {
                 getOpsNumberForAllCards={getOpsNumberForAllCards}
                 getWhoNotify={getWhoNotify}
                 toGetDataNotes={toGetDataNotes}
+
+                isCopyOpening={isCopyOpening}
+
+                toGetAlert={toGetAlert}
             />
 
             <div className="summary summary__helpers">
@@ -93,27 +122,41 @@ const CardsList = (props) => {
                     isDataForCard={isDataForCard}
                     isInside={isInside}
                     toGetDataUpdate={toGetDataUpdate}
+
+                    isCopyUpdate={isCopyUpdate}
+                    toGetAlert={toGetAlert}
                 />
 
                 <NotifyPerson
                     isNotifyPerson={isNotifyPerson}
                     isDataForCard={isDataForCard}
                     toGetNotesForPerson={toGetNotesForPerson}
+
+                    isCopyNotify={isCopyNotify}
+                    toGetAlert={toGetAlert}
                 />
             </div>
 
             {/*Закрытие*/}
             <CardItem
+                flagOpening={false}
+
                 isDataForCard={isDataForCard}
                 isTimeForCard={isTimeForCard}
                 isInside={isInside}
-                flagOpening={false}
                 isProblemForAllCards={isProblemForAllCards}
                 isOpsNumberAllCards={isOpsNumberAllCards}
                 isTimeForClosing={isTimeForClosing}
                 isWhoNotifyForClosing={isWhoNotifyForClosing}
                 toGetDurationIncident={toGetDurationIncident}
                 toNotesClosingOut={toNotesClosingOut}
+                isCopyClosing={isCopyClosing}
+
+                toGetAlert={toGetAlert}
+            />
+
+            <Alert
+                isAlert={isAlert}
             />
         </div>
     )

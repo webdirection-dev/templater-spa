@@ -58,7 +58,7 @@
 .main__btn-showTable {
     display: block;
     margin: 0 auto;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 .main__icon-showTable {
@@ -109,4 +109,10 @@
 
 .main__action-btn-green:hover {
     filter: brightness(120%) !important;
+}
+
+.main__card-absolute {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }

@@ -247,7 +247,7 @@ const FormToSummary = (props) => {
                         <label
                             htmlFor='country'
                             className={classesForLabelCountry}
-                        > Страна </label>
+                        > ЕАЭС </label>
 
                         <Select
                             isClearable
@@ -255,7 +255,7 @@ const FormToSummary = (props) => {
                             className='select-react'
                             onChange={setQualities}
                             options={DataForItem.qualities}
-                            placeholder='Страна'
+                            placeholder='ЕАЭС'
                             noOptionsMessage={() => 'Не найдено'}
                         />
                     </div>

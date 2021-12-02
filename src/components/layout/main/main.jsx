@@ -24,6 +24,12 @@ const Main = () => {
     const [isClosingTime, setClosingTime] = useState({hourClosing: '', minuteClosing: ''})
     const [isNotesClosingOut, setNotesClosingOut] = useState(null)
 
+    // Данные для копирования по кнопке на карточке-конструкторе
+    const [isCopyOpening, setCopyOpening] = useState('')
+    const [isCopyClosing, setCopyClosing] = useState('')
+    const [isCopyNotify, setCopyNotify] = useState('')
+    const [isCopyUpdate, setCopyUpdate] = useState('')
+
     const toGetDataFromPanel = (obj) => {
         setDataForCard(obj)
     }
@@ -101,6 +107,23 @@ const Main = () => {
         setNotesClosingOut(str)
     }
 
+    // Получить данные для копирования по кнопке на карточках
+    const toGetCopyOpeningFromTable = (str) => {
+        setCopyOpening(str)
+    }
+
+    const toGetCopyClosingFromTable = (str) => {
+        setCopyClosing(str)
+    }
+
+    const toGetCopyNotifyFromTable = (str) => {
+        setCopyNotify(str)
+    }
+
+    const toGetCopyUpdateFromTable = (str) => {
+        setCopyUpdate(str)
+    }
+
     //componentDidUpdate
     //остановить прокрутку тега body при открытом окне markdown
     useEffect(() => {
@@ -134,15 +157,20 @@ const Main = () => {
                     toGetDataUpdate={toGetDataUpdate}
                     toGetDurationIncident={toGetDurationIncident}
                     toNotesClosingOut={toNotesClosingOut}
-                />
-            </div>
 
-            <button
-                className="btn-floating btn-large pulse main__btn-showTable"
-                onClick={toToggleShowTable}
-            >
-                <i className="material-icons main__icon-showTable">create</i>
-            </button>
+                    isCopyOpening={isCopyOpening}
+                    isCopyClosing={isCopyClosing}
+                    isCopyNotify={isCopyNotify}
+                    isCopyUpdate={isCopyUpdate}
+                />
+
+                <button
+                    className="btn-floating btn-large main__btn-showTable"
+                    onClick={toToggleShowTable}
+                >
+                    <i className="material-icons main__icon-showTable">create</i>
+                </button>
+            </div>
 
             <Table
                 isDataForCard={isDataForCard}
@@ -162,6 +190,11 @@ const Main = () => {
                 isNotesClosingOut={isNotesClosingOut}
 
                 toToggleShowTable={toToggleShowTable}
+
+                toGetCopyOpeningFromTable={toGetCopyOpeningFromTable}
+                toGetCopyClosingFromTable={toGetCopyClosingFromTable}
+                toGetCopyNotifyFromTable={toGetCopyNotifyFromTable}
+                toGetCopyUpdateFromTable={toGetCopyUpdateFromTable}
             />
         </>
 

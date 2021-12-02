@@ -23,7 +23,12 @@ const GeneratorTxtOut = (props) => {
         isClosingTime = {hourClosing: '', minuteClosing: ''},
         isNotesClosingOut = null,
 
-        toGetAlert = Function.prototype
+        toGetAlert = Function.prototype,
+
+        toGetCopyOpeningFromTable = Function.prototype,
+        toGetCopyClosingFromTable = Function.prototype,
+        toGetCopyNotifyFromTable = Function.prototype,
+        toGetCopyUpdateFromTable = Function.prototype,
     } = props
 
     const {
@@ -109,6 +114,16 @@ const GeneratorTxtOut = (props) => {
         `\n${isUpdate}`
     )
 
+    // внести изменения из INPUT в сформированную таблицу данных
+    const onWriteTxt = (event) => {
+        let {name, value} = event.target
+
+        if (name === 'opening') setOpeningOut(value)
+        if (name === 'closing') setClosingOut(value)
+        if (name === 'update') setUpdateOut(value)
+        if (name === 'notify') setNotifyOut(value)
+    }
+
     const toCopyTable = () => {
         if (name === 'opening') navigator.clipboard.writeText(isOpeningOut)
         if (name === 'closing') navigator.clipboard.writeText(isClosingOut)
@@ -119,15 +134,26 @@ const GeneratorTxtOut = (props) => {
         toGetAlert()
     }
 
-    // внести изменения из INPUT в сформированную таблицу данных
-    const onWriteTxt = (event) => {
-        let {name, value} = event.target
+    // скопируем Opening для буфера по клику с карточки
+    useEffect(() => {
+        toGetCopyOpeningFromTable(strOpening)
+        // eslint-disable-next-line
+    }, [strOpening])
 
-        if (name === 'opening') setOpeningOut(value)
-        if (name === 'closing') setClosingOut(value)
-        if (name === 'update') setUpdateOut(value)
-        if (name === 'notify') setNotifyOut(value)
-    }
+    useEffect(() => {
+        toGetCopyClosingFromTable(strClosing)
+        // eslint-disable-next-line
+    }, [strClosing])
+
+    useEffect(() => {
+        toGetCopyNotifyFromTable(strNotify)
+        // eslint-disable-next-line
+    }, [strNotify])
+
+    useEffect(() => {
+        toGetCopyUpdateFromTable(strUpdate)
+        // eslint-disable-next-line
+    }, [strUpdate])
 
     // обновим содержание страницы в соответсвие с данными вносимыми в карточки
     useEffect(() => {

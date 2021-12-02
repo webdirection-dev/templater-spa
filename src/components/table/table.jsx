@@ -13,6 +13,7 @@ const Table = (props) => {
         isTimeForClosing = Object.prototype,
 
         isFlagInside = false,
+
         isDataProblem = null,
         isDataWhoNotify = null,
         isDataNotes = null,
@@ -22,6 +23,11 @@ const Table = (props) => {
         isUpdate = null,
         isClosingTime = {hourClosing: '', minuteClosing: ''},
         isNotesClosingOut = null,
+
+        toGetCopyOpeningFromTable = Function.prototype,
+        toGetCopyClosingFromTable = Function.prototype,
+        toGetCopyNotifyFromTable = Function.prototype,
+        toGetCopyUpdateFromTable = Function.prototype,
     } = props
 
     const [isAlert, setAlert] = useState(false)
@@ -66,6 +72,8 @@ const Table = (props) => {
                         isDataOps={isDataOps}
 
                         toGetAlert={toGetAlert}
+
+                        toGetCopyOpeningFromTable={toGetCopyOpeningFromTable}
                     />
                 </div>
 
@@ -78,6 +86,8 @@ const Table = (props) => {
                         isUpdate={isUpdate}
 
                         toGetAlert={toGetAlert}
+
+                        toGetCopyUpdateFromTable={toGetCopyUpdateFromTable}
                     />
 
                     <GeneratorTxtOut
@@ -86,6 +96,8 @@ const Table = (props) => {
                         isNotesForPerson={isNotesForPerson}
 
                         toGetAlert={toGetAlert}
+
+                        toGetCopyNotifyFromTable={toGetCopyNotifyFromTable}
                     />
                 </div>
 
@@ -106,6 +118,8 @@ const Table = (props) => {
                         isNotesClosingOut={isNotesClosingOut}
 
                         toGetAlert={toGetAlert}
+
+                        toGetCopyClosingFromTable={toGetCopyClosingFromTable}
                     />
                 </div>
             </div>

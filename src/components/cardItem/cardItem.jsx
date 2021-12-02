@@ -4,12 +4,13 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 const CardItem = (props) => {
     const {
+        flagOpening = true,
+
         isDataForCard = Object.prototype,
         isTimeForCard = Object.prototype,
         isTimeForClosing = Object.prototype,
 
         onCheckInside = Function.prototype,
-        flagOpening = true,
         isInside = false,
         getProblemForAllCards = Function.prototype,
         isProblemForAllCards = null,
@@ -20,7 +21,21 @@ const CardItem = (props) => {
         toGetDataNotes = Function.prototype,
         toGetDurationIncident = Function.prototype,
         toNotesClosingOut = Function.prototype,
+
+        isCopyOpening = '',
+        isCopyClosing = '',
+
+        toGetAlert = Function.prototype
     } = props
+
+    const toCopyTable = () => {
+        if (flagOpening) navigator.clipboard.writeText(isCopyOpening)
+        if (!flagOpening) navigator.clipboard.writeText(isCopyClosing)
+
+        document.execCommand("copy")
+
+        toGetAlert()
+    }
 
     const [isChooseInside, setChooseInside] = useState(false)
     const [isOpsNumber, setOpsNumber] = useState('')
@@ -173,8 +188,6 @@ const CardItem = (props) => {
         // eslint-disable-next-line
     }, [isNotesClosing])
 
-
-
     if (flagOpening) {
         return(
             <ViewOpening
@@ -203,6 +216,8 @@ const CardItem = (props) => {
                 classesForLabelInput={classesForLabelInput}
                 classesIfWarning={classesIfWarning}
                 classesIfPrimary={classesIfPrimary}
+
+                toCopyTable={toCopyTable}
             />
         )
     }
@@ -232,6 +247,8 @@ const CardItem = (props) => {
             onWriteInput={onWriteInput}
 
             classesForCardInside={classesForCardInside}
+
+            toCopyTable={toCopyTable}
         />
     )
 
@@ -266,6 +283,8 @@ const ViewOpening = (props) => {
         classesForLabelInput,
         classesIfWarning,
         classesIfPrimary,
+
+        toCopyTable,
     } = props
 
     return(
@@ -344,6 +363,15 @@ const ViewOpening = (props) => {
                     />
                 </div>
             </div>
+
+            <div className="txt-out__card-footer">
+                <button
+                    className="btn-floating waves-effect waves-light main__action-btn-green"
+                    onClick={toCopyTable}
+                >
+                    <i className="material-icons">content_copy</i>
+                </button>
+            </div>
         </div>
     )
 }
@@ -372,6 +400,8 @@ const ViewClosing = (props) => {
         onWriteInput,
 
         classesForCardInside,
+
+        toCopyTable,
     } = props
 
     return(
@@ -414,6 +444,13 @@ const ViewClosing = (props) => {
                     />
                 </div>
             </div>
+
+            <button
+                className="btn-floating waves-effect waves-light main__action-btn-green main__card-absolute"
+                onClick={toCopyTable}
+            >
+                <i className="material-icons">content_copy</i>
+            </button>
         </div>
     )
 }

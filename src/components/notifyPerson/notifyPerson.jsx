@@ -5,8 +5,20 @@ const NotifyPerson = (props) => {
     const {
         isNotifyPerson = Array.prototype,
         isDataForCard = Object.prototype,
-        toGetNotesForPerson = Function.prototype
+        toGetNotesForPerson = Function.prototype,
+
+        isCopyNotify = '',
+        toGetAlert = Function.prototype
     } = props
+
+
+    const toCopyTable = () => {
+        navigator.clipboard.writeText(isCopyNotify)
+
+        document.execCommand("copy")
+
+        toGetAlert()
+    }
 
     let priority = null
     let effect = null
@@ -52,6 +64,15 @@ const NotifyPerson = (props) => {
             </div>
             <div className="card-action summary__notifyPerson-txt">
                 <p>Оповещаем {pre} {priority} {effect} инциденте</p>
+            </div>
+
+            <div className="txt-out__card-footer">
+                <button
+                    className="btn-floating waves-effect waves-light main__action-btn-green"
+                    onClick={toCopyTable}
+                >
+                    <i className="material-icons">content_copy</i>
+                </button>
             </div>
         </div>
     )
