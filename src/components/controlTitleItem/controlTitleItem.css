@@ -1,5 +1,6 @@
 .control-title__list {
     display: flex;
+    flex-direction: column;
     border: none !important;
     width: 100%;
     margin: 0 auto !important;
@@ -7,9 +8,19 @@
 
 .control-title__item {
     position: relative;
-    width: 33.3%;
+    width: 100%;
     border-right: 2px solid #546e7a;
     border-top: 2px solid #455a64;
+}
+
+@media (min-width: 768px) {
+    .control-title__list {
+        flex-direction: row;
+    }
+
+    .control-title__item {
+        width: 33.3%;
+    }
 }
 
 .control-title__close {

@@ -46,6 +46,7 @@
 
 .control-panel__footer {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: space-between;
     border-top: 2px solid rgba(160,160,160,0.2);
@@ -93,7 +94,23 @@
 
 .control-panel__select {
     position: relative;
-    width: 28%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .control-panel__footer {
+        flex-direction: row;
+    }
+
+    .control-title__item {
+        width: 33.3%;
+    }
+
+    .control-panel__select {
+        width: 28%;
+        margin-bottom: 0;
+    }
 }
 
 .control-panel__label {
