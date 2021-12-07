@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     border: none !important;
-    width: 100%;
+    width: 80%;
     margin: 0 auto !important;
 }
 
@@ -16,10 +16,6 @@
 @media (min-width: 768px) {
     .control-title__list {
         flex-direction: row;
-    }
-
-    .control-title__item {
-        width: 33.3%;
     }
 }
 

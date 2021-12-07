@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import ControlTitleItem from "../controlTitleItem";
-import CurrentTime from "../currentTime";
 import './controlPanel.css'
 
 import Select from 'react-select';
@@ -8,8 +7,6 @@ import DataForItem from "../../data/dataForItem";
 const ControlPanel = (props) => {
     const {
         toGetDataFromPanel = Function.prototype,
-        toGetTimeFromPanel = Function.prototype,
-        toGetTimeClosing = Function.prototype,
         toGetNotifyPerson = Function.prototype,
     } = props
 
@@ -83,9 +80,6 @@ const ControlPanel = (props) => {
                 isShowSetTimeClosing={isShowSetTimeClosing}
                 isEven={isEven}
                 isNotifyPerson={isNotifyPerson}
-
-                toGetTimeFromPanel={toGetTimeFromPanel}
-                toGetTimeClosing={toGetTimeClosing}
             />
         )
     };
@@ -159,46 +153,24 @@ const FormToSummary = (props) => {
         setSelectPriority,
         setSelectEffect,
 
-        onShowSetTime,
-        onShowSetTimeClosing,
         onChangeInput,
         onCheckBox,
 
-        showSetTime,
         isQualities,
         isStand,
         isSelectTG,
         isSelectPriority,
         isSelectEffect,
-        isShowSetTimeClosing,
+
         isEven,
         isNotifyPerson,
-
-        toGetTimeFromPanel,
-        toGetTimeClosing
     } = props;
 
     let classesOpen = 'hide';
     let classesNotify = 'hide';
-    let classesClose = 'hide';
 
     if (item === 'Открытие') classesOpen = 'control-panel__main'
     if (item === 'Оповещение') classesNotify = 'control-panel__main'
-    if (item === 'Закрытие') classesClose = 'control-panel__main'
-
-    let buttonTitle = 'Время открытия'
-    let classesButton = 'btn-large'
-    if (showSetTime) {
-        buttonTitle = 'Свернуть выбор'
-        classesButton = classesButton + ' btn__color-orange'
-    }
-
-    let buttonTitleClosing = 'Время закрытия'
-    let classesButtonClosing = 'btn-large'
-    if (isShowSetTimeClosing) {
-        buttonTitleClosing = 'Свернуть выбор'
-        classesButtonClosing = classesButtonClosing + ' btn__color-orange'
-    }
 
     let classesForLabelCountry = 'hide';
     if (isQualities !== null) classesForLabelCountry = 'control-panel__label'
@@ -310,18 +282,8 @@ const FormToSummary = (props) => {
                         />
                     </div>
 
-                    <div className="control-panel__time">
-                        <button
-                            id='btnOpening'
-                            className={classesButton}
-                            onClick={onShowSetTime}
-                        >{buttonTitle}</button>
-
-                        <CurrentTime
-                            showSetTime={showSetTime}
-                            onShowSetTime={onShowSetTime}
-                            toGetTimeFromPanel={toGetTimeFromPanel}
-                        />
+                    <div className="control-panel__select">
+                        <p className='hide'>1</p>
                     </div>
                 </div>
             </div>
@@ -411,25 +373,6 @@ const FormToSummary = (props) => {
                     </label>
                 </div>
                 </div>
-
-            <div className={classesClose}>
-                <div className="control-panel__footer control-panel__footer-closing">
-                    <div className="control-panel__time">
-                        <button
-                            id='btnClosing'
-                            className={classesButtonClosing}
-                            onClick={onShowSetTimeClosing}
-                        >{buttonTitleClosing}</button>
-
-                        <CurrentTime
-                            onShowSetTimeClosing={onShowSetTimeClosing}
-                            isShowSetTimeClosing={isShowSetTimeClosing}
-                            toGetTimeClosing={toGetTimeClosing}
-                            flagClosing={true}
-                        />
-                    </div>
-                </div>
-            </div>
         </div>
     )
 };

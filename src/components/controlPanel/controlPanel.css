@@ -18,8 +18,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 80%;
     background-color: #546e7a;
+    margin: 0 auto;
     padding: 0 25px;
 }
 
@@ -101,10 +102,6 @@
 @media (min-width: 768px) {
     .control-panel__footer {
         flex-direction: row;
-    }
-
-    .control-title__item {
-        width: 33.3%;
     }
 
     .control-panel__select {

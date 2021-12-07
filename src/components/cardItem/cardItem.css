@@ -7,7 +7,7 @@
 
 .summary {
     width: 95%;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 @media (min-width: 768px) {
@@ -162,6 +162,35 @@
 }
 
 .summary__whoIsNotify-title {
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.summary__time {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.summary__time input {
+    height: 30px !important;
+    resize: none;
+    outline: none;
+    border: none;
+    /*border-bottom: 3px solid #4db6ac !important;*/
+    border-radius: 3px;
+    color: black;
+    /*color: #e0f2f1;*/
+    opacity: .8;
+    background-color: white !important;
+    /*background-color: #455a64 !important;*/
+    /*font-size: 18px !important;*/
+    margin-bottom: 0 !important;
+    font-weight: bold;
+    /*padding-left: 5px !important;*/
+}
+
+.summary__time-title {
     flex-shrink: 0;
     margin-right: 15px;
 }

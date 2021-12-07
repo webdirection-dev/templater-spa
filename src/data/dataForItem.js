@@ -8,10 +8,6 @@ const DataForItem = {
             icon: 'notifications_active',
             name: 'Оповещение'
         },
-        {
-            icon: 'lock_outline',
-            name: 'Закрытие',
-        }
     ],
 
     tg: [

@@ -25,9 +25,9 @@
 
 /*materializeCSS*/
 [type="checkbox"].filled-in:not(:checked) + span:not(.lever)::after {
-    border: 1px solid white;
+    border: 1px solid white !important;
 }
 
 [type="checkbox"]+span:not(.lever) {
-    line-height: normal;
+    line-height: normal !important;
 }

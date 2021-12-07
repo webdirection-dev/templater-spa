@@ -11,8 +11,6 @@ const CopyMarkdown = ({
                           isOpsNumberAllCards = '',
 
                           isDataForCard = Object.prototype,
-                          isTimeForCard = Object.prototype,
-                          isTimeForClosing = Object.prototype,
 
                           isWhoNotify = '',
                           isWhoNotifyForClosing = '',
@@ -20,12 +18,17 @@ const CopyMarkdown = ({
                           isNotes = '',
                           isNotesClosing = '',
 
-                          isInputHourForClosing = '',
-                          isInputMinuteForClosing = '',
-
                           isNotesUpdate = '',
                           txtForCopy = '',
                           personNotify = '',
+
+                          hoursStartDate = null,
+                          minutesStartDate = null,
+
+                          isGetTimeStart = {startHour: null, startMinute: null},
+                          hoursEndDate = null,
+                          minutesEndDate = null,
+                          durationIncOut = '',
                       }) => {
 
     const {
@@ -57,11 +60,6 @@ const CopyMarkdown = ({
     let qualitiesOut = ''
     if (qualities !== null) qualitiesOut = ` ${qualities}`
 
-    let hourClosingOut = ''
-    if (isInputHourForClosing !== '') hourClosingOut = `${isInputHourForClosing}час. `
-    let minuteClosingOut = ''
-    if (isInputMinuteForClosing !== '') minuteClosingOut = `${isInputMinuteForClosing}мин.`
-
     const strOpening = (
         `${insideOpen}` +
         `**Инцидент ОТКРЫТ**` +
@@ -73,7 +71,7 @@ const CopyMarkdown = ({
         `\n**Приоритет:** ${priority}` +
         `\n**Степень влияния:** ${effect}` +
         `\nhttps://jira.crpt.ru/browse/OPS-${isOpsNumber}` +
-        `\n**Время инцидента:** ${isTimeForCard.hour}:${isTimeForCard.minute}` +
+        `\n**Время инцидента:** ${hoursStartDate}:${minutesStartDate}` +
         `\n**Кто оповещён:** ${isWhoNotify}` +
         `\n` +
         `\n**Примечание:** ${isNotes}`
@@ -90,7 +88,7 @@ const CopyMarkdown = ({
         `\n**Приоритет:** ${priority}` +
         `\n**Степень влияния:** ${effect}` +
         `\nhttps://jira.crpt.ru/browse/OPS-${isOpsNumberAllCards}` +
-        `\n**Время инцидента:** ${isTimeForCard.hour}:${isTimeForCard.minute} - ${isTimeForClosing.hourClosing}:${isTimeForClosing.minuteClosing} (${hourClosingOut}${minuteClosingOut})` +
+        `\n**Время инцидента:** ${isGetTimeStart.startHour}:${isGetTimeStart.startMinute} - ${hoursEndDate}:${minutesEndDate} (${durationIncOut})` +
         `\n**Кто оповещён:** ${isWhoNotifyForClosing}` +
         `\n` +
         `\n**Примечание:** ${isNotesClosing}`

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import App from "./components/app";
-import {BrowserRouter} from "react-router-dom";
+
+import 'materialize-css/dist/css/materialize.min.css';
+import './index.css';
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <App />
     </React.StrictMode>,
     document.getElementById('root')
 );
