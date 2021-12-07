@@ -407,7 +407,7 @@ const ViewOpening = (props) => {
                     </div>
 
                     <div className='summary__time'>
-                        <div className='summary__time-title'>Время инцидента:</div>
+                        <div className='summary__time-title'>Начало инцидента:</div>
                         <DatePicker
                             selected={isStartDate}
                             onChange={(date) => setStartDate(date)}
