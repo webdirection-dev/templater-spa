@@ -189,3 +189,8 @@ body {
   z-index: 2000;
 }
 
+.react-datepicker-wrapper input{
+  padding-left: 10px !important;
+  box-sizing: border-box !important;
+}
+
