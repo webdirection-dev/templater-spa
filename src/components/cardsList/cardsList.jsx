@@ -7,7 +7,6 @@ import UpdateCard from "../updateCard";
 import Alert from "../table/alert";
 
 const CardsList = (props) => {
-
     const {
         isDataForCard = Object.prototype,
         isNotifyPerson = Array.prototype,
@@ -20,6 +19,7 @@ const CardsList = (props) => {
     const [isAlert, setAlert] = useState(false)
     const [isGetDataTime, setGetDataTime] = useState({})
     const [isGetTimeStart, setGetTimeStart] = useState({})
+    const [isStartDay, setStartDay] = useState(false)
 
     const toGetDataTime = (start) => {
         setGetDataTime(start)
@@ -75,6 +75,8 @@ const CardsList = (props) => {
                 toGetAlert={toGetAlert}
                 toGetDataTime={toGetDataTime}
                 toGetTimeStart={toGetTimeStart}
+
+                getStartDay={(day => setStartDay(day))}
             />
 
             <div className="summary summary__helpers">
@@ -109,6 +111,8 @@ const CardsList = (props) => {
 
                 isGetTimeStart={isGetTimeStart}
                 isGetDataTime={isGetDataTime}
+
+                isStartDay={isStartDay}
             />
 
             <Alert

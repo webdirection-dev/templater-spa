@@ -32,6 +32,9 @@ const CardItem = (props) => {
         toGetDataTime = Function.prototype,
         isGetDataTime = {},
         isGetTimeStart = {},
+
+        getStartDay = Function.prototype,
+        isStartDay = ''
     } = props
 
     const [isChooseInside, setChooseInside] = useState(false)
@@ -46,8 +49,16 @@ const CardItem = (props) => {
     const [isInputMinuteForClosing, setInputMinuteForClosing] = useState('')
 
     // React Datepicker
-    const [isStartDate, setStartDate] = useState(new Date());
-    const [isEndDate, setEndDate] = useState(new Date());
+    const [isStartDate, setStartDate] = useState(new Date())
+    const [isEndDate, setEndDate] = useState(new Date())
+
+    const dayClose = isEndDate
+
+    //Передать наверх день открытия
+    useEffect(() => {
+        getStartDay(isStartDate)
+        // eslint-disable-next-line
+    }, [isStartDate])
 
     const hoursStartDate = addZero(isStartDate.getHours())
     const minutesStartDate = addZero(isStartDate.getMinutes())
@@ -110,7 +121,10 @@ const CardItem = (props) => {
             minutesStartDate,
             hoursEndDate,
             minutesEndDate,
-            durationIncOut
+            durationIncOut,
+
+            isStartDay,
+            dayClose,
         })
     }
 
@@ -309,7 +323,7 @@ const CardItem = (props) => {
             classesForCardInside={classesForCardInside}
 
             toCopyMarkdown={toCopyMarkdown}
-            isGetTimeStart={isGetTimeStart}
+            // isGetTimeStart={isGetTimeStart}
 
             isEndDate={isEndDate}
             setEndDate={setEndDate}
@@ -470,7 +484,7 @@ const ViewClosing = (props) => {
         classesForCardInside,
 
         toCopyMarkdown,
-        isGetTimeStart,
+        // isGetTimeStart,
 
         isEndDate,
         setEndDate,

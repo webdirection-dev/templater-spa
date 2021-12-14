@@ -1,3 +1,5 @@
+import useDateHook from "../hooks/getDate";
+
 const CopyMarkdown = ({
                           flagCard = '',
 
@@ -29,8 +31,11 @@ const CopyMarkdown = ({
                           hoursEndDate = null,
                           minutesEndDate = null,
                           durationIncOut = '',
-                      }) => {
 
+                          isStartDay = '',
+                          dayClose = '',
+
+                      }) => {
     const {
         qualities,
         stand,
@@ -60,6 +65,17 @@ const CopyMarkdown = ({
     let qualitiesOut = ''
     if (qualities !== null) qualitiesOut = ` ${qualities}`
 
+    //Логика для отрисовки дня начала и дня окончания
+    let dayStart = ''
+    let dayEnd = ''
+    const start = useDateHook(isStartDay)
+    const end = useDateHook(dayClose)
+
+    if (start < end) {
+        dayStart = ` ${start}`
+        dayEnd = `${end} `
+    }
+
     const strOpening = (
         `${insideOpen}` +
         `**Инцидент ОТКРЫТ**` +
@@ -88,7 +104,7 @@ const CopyMarkdown = ({
         `\n**Приоритет:** ${priority}` +
         `\n**Степень влияния:** ${effect}` +
         `\nhttps://jira.crpt.ru/browse/OPS-${isOpsNumberAllCards}` +
-        `\n**Время инцидента:** ${isGetTimeStart.startHour}:${isGetTimeStart.startMinute} - ${hoursEndDate}:${minutesEndDate} (${durationIncOut})` +
+        `\n**Время инцидента:**${dayStart} ${isGetTimeStart.startHour}:${isGetTimeStart.startMinute} - ${dayEnd}${hoursEndDate}:${minutesEndDate} (${durationIncOut})` +
         `\n**Кто оповещён:** ${isWhoNotifyForClosing}` +
         `\n` +
         `\n**Примечание:** ${isNotesClosing}`
