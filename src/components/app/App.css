@@ -1,0 +1,56 @@
+#garland {
+    position:absolute;
+    bottom:46px;
+    left:0;
+    /*background-image:url('https://uguide.ru/js/script/christmas.png');*/
+    background-image:url('./img/christmas.png');
+    height:36px;
+    width:100%;
+    overflow:hidden;
+    z-index:99
+}
+
+#nums_1 {padding:100px}
+
+.garland_1 {background-position: 0 0}
+
+.garland_2 {background-position: 0 -36px}
+
+.garland_3 {background-position: 0 -72px}
+
+.garland_4 {background-position: 0 -108px}
+
+.newYear {
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 100px);
+    width: 200px;
+    z-index: 1000;
+    text-align: center;
+}
+
+.newYear__date {
+    position: relative;
+    color: white;
+    font-size: 86px;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px #82b1ff;
+    /*text-shadow: 5px 5px 5px #7faefa;*/
+    /*text-shadow: 5px 3px 5px #475d68;*/
+}
+
+.newYear__santa {
+    position: absolute;
+    top: 14px;
+    right: 71px;
+    width: 70px;
+}
+
+.newYear__2 {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    color: white;
+    font-size: 86px;
+    font-weight: bold;
+}

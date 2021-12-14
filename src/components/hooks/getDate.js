@@ -1,7 +1,4 @@
-// import {useState, useEffect} from "react";
-
 const useDateHook = (value) => {
-    // const [isValue, setValue] = useState(value)
 
     const options = {
         // era: 'long',
@@ -14,14 +11,6 @@ const useDateHook = (value) => {
         // minute: 'numeric',
         // second: 'numeric'
     };
-
-    // useEffect(() => {
-    //     setValue(value)
-    //     console.log(value.toLocaleString('ru', options))
-    //
-    //     // return value.toLocaleString('ru', options)
-    // // eslint-disable-next-line
-    // }, [])
 
     return value.toLocaleString('ru', options)
 }
