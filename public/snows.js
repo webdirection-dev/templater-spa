@@ -1,5 +1,6 @@
 var snowStorm = (function(window, document) {
 
+
     // --- common properties ---
 
     this.flakesMax = 128;           // Limit total amount of snow made (falling + sticking)

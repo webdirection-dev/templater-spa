@@ -23,8 +23,8 @@
 .newYear {
     position: absolute;
     bottom: 5px;
-    left: calc(50% - 100px);
-    width: 200px;
+    left: calc(50% - 106px);
+    /*width: 200px;*/
     z-index: 1000;
     text-align: center;
 }
@@ -35,21 +35,19 @@
     font-size: 86px;
     font-weight: bold;
     text-shadow: 5px 5px 5px #82b1ff;
-    /*text-shadow: 5px 5px 5px #7faefa;*/
-    /*text-shadow: 5px 3px 5px #475d68;*/
 }
 
 .newYear__santa {
     position: absolute;
     top: 14px;
-    right: 71px;
+    right: 82px;
     width: 70px;
 }
 
 .newYear__2 {
     position: absolute;
     top: 0;
-    right: 40px;
+    right: 52px;
     color: white;
     font-size: 86px;
     font-weight: bold;
