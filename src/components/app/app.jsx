@@ -52,7 +52,7 @@ const Snows = () => {
                 <div id="nums_1">1</div>
             </div>
 
-            <div className="newYear">
+            <div id='newYear' className="newYear">
                 <div className="newYear__date">
                     2022
                     <img src={santa} alt="santa" className='newYear__santa'/>

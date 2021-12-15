@@ -31,3 +31,11 @@
 [type="checkbox"]+span:not(.lever) {
     line-height: normal !important;
 }
+
+.hide {
+    display: none;
+}
+
+.showSnow {
+    display: block;
+}
