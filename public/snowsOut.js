@@ -2,10 +2,9 @@ window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     const btn = document.getElementById('stopAnimation')
+    const icon = document.getElementById('stopIcon')
     const garland = document.getElementById('garland')
     const newYear = document.getElementById('newYear')
-
-    console.log(newYear)
 
     let arr = null;
     let flagGarland = true;
@@ -32,10 +31,11 @@ window.addEventListener('DOMContentLoaded', () => {
         if (flagGarland) {
             garland.style.display = 'block'
             newYear.style.display = 'block'
+            icon.innerText = 'cancel'
         } else {
             garland.style.display = 'none'
             newYear.style.display = 'none'
+            icon.innerText = 'play_circle_filled'
         }
     })
-
 })
