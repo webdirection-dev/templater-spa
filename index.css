@@ -51,3 +51,8 @@
 #stopAnimation:hover {
     background-color: red !important;
 }
+
+body {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
