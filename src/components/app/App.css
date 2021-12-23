@@ -39,15 +39,15 @@
 
 .newYear__santa {
     position: absolute;
-    top: 14px;
-    right: 82px;
+    top: 20px;
+    right: 75px;
     width: 70px;
 }
 
 .newYear__2 {
     position: absolute;
     top: 0;
-    right: 52px;
+    right: 49px;
     color: white;
     font-size: 86px;
     font-weight: bold;
