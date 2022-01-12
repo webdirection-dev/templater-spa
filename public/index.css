@@ -35,24 +35,3 @@
 .hide {
     display: none;
 }
-
-.showSnow {
-    display: block;
-}
-
-/*btn play Snows*/
-#stopAnimation {
-    position: absolute;
-    left: 10px;
-    bottom: 11px;
-    height: 30px !important;
-}
-
-#stopAnimation:hover {
-    background-color: red !important;
-}
-
-body {
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
