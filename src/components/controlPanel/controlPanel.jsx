@@ -325,7 +325,7 @@ const FormToSummary = (props) => {
                             checked={isNotifyPerson.sokolov}
                             onChange={onCheckBox}
                         />
-                        <span>Василий Соколов</span>
+                        <span>Василий Марков</span>
                         {/*<span>Андрей Соколов</span>*/}
                     </label>
 
