@@ -17,7 +17,7 @@ const ControlPanel = (props) => {
     const [isSelectEffect, setSelectEffect] = useState(null);
     const [isEven, setEven] = useState(true);
     const [isNotifyPerson, setNotifyPerson] = useState({
-        sokolov: true,
+        // sokolov: true,
         markov: true,
         balamutin: true,
         zalygin: true,
@@ -318,22 +318,22 @@ const FormToSummary = (props) => {
                 </div>
 
                 <div className="control-panel__footer control-panel__footer-notify control-panel__footer-even">
-                    <label>
-                        <input
-                            type="checkbox"
-                            className="filled-in"
-                            name='markov'
-                            checked={isNotifyPerson.sokolov}
-                            onChange={onCheckBox}
-                        />
-                        <span>Андрей Соколов</span>
-                    </label>
+                    {/*<label>*/}
+                    {/*    <input*/}
+                    {/*        type="checkbox"*/}
+                    {/*        className="filled-in"*/}
+                    {/*        name='markov'*/}
+                    {/*        checked={isNotifyPerson.sokolov}*/}
+                    {/*        onChange={onCheckBox}*/}
+                    {/*    />*/}
+                    {/*    <span>Андрей Соколов</span>*/}
+                    {/*</label>*/}
                     <label>
                         <input
                             type="checkbox"
                             className="filled-in"
                             name='sokolov'
-                            checked={isNotifyPerson.sokolov}
+                            checked={isNotifyPerson.markov}
                             onChange={onCheckBox}
                         />
                         <span>Василий Марков</span>

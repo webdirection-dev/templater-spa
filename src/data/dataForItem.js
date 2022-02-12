@@ -155,10 +155,10 @@ const DataForItem = {
     ],
 
     notifyPerson: [
-        {
-            name: 'sokolov',
-            userName: '@AndreySokolov83'
-        },
+        // {
+        //     name: 'sokolov',
+        //     userName: '@AndreySokolov83'
+        // },
         {
             name: 'markov',
             userName: '@haltandcatchfire91'
