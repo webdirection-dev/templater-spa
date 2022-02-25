@@ -332,7 +332,7 @@ const FormToSummary = (props) => {
                         <input
                             type="checkbox"
                             className="filled-in"
-                            name='sokolov'
+                            name='markov'
                             checked={isNotifyPerson.markov}
                             onChange={onCheckBox}
                         />
