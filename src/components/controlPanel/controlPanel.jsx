@@ -4,6 +4,7 @@ import './controlPanel.css'
 
 import Select from 'react-select';
 import DataForItem from "../../data/dataForItem";
+
 const ControlPanel = (props) => {
     const {
         toGetDataFromPanel = Function.prototype,
@@ -163,7 +164,6 @@ const FormToSummary = (props) => {
         setSelectPriority,
         setSelectEffect,
 
-        onChangeInput,
         onCheckBox,
 
         isQualities,
@@ -176,6 +176,8 @@ const FormToSummary = (props) => {
 
         // Разбить оповещаемых на чёт/нечёт
         // isEven,
+        // onChangeInput,
+
     } = props;
 
     let classesOpen = 'hide';

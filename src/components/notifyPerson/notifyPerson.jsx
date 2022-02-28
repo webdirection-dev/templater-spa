@@ -1,8 +1,11 @@
 import './notifyPerson.css'
 import {useEffect} from "react";
 import CopyMarkdown from "../copyMarkdown";
+import {useSelector} from "react-redux";
 
 const NotifyPerson = (props) => {
+    const isInsideIncident = useSelector(state => state.notifyReducer.isInsideIncident)
+
     const {
         isNotifyPerson = Array.prototype,
         isDataForCard = Object.prototype,
@@ -10,8 +13,10 @@ const NotifyPerson = (props) => {
         toGetAlert = Function.prototype
     } = props
 
+    const inside = isInsideIncident ? ' внутреннем' : ''
+
     let priority = null
-    let effect = null
+    let effect = ''
     let pre = 'о'
 
     if (isDataForCard.priority === 'Критический') priority = 'критическом'
@@ -20,9 +25,10 @@ const NotifyPerson = (props) => {
 
     if (isDataForCard.effect === 'Массовое') effect = 'массовом'
     if (isDataForCard.effect === 'Групповое') effect = 'групповом'
+    if (isDataForCard.effect === 'Одиночное') effect = 'одиночном'
 
     if (priority === null) pre = 'об'
-    if (priority === null &&  effect !== null) pre = 'о'
+    if ((priority === null &&  effect !== '') || inside) pre = 'о'
 
     const toCopyMarkdown = (flagCard) => {
         const personNotify = isNotifyPerson.join(' ')
@@ -31,9 +37,9 @@ const NotifyPerson = (props) => {
         let effectOut = ''
 
         if (priority !== null) priorityOut = ` ${priority}`
-        if (effect !== null) effectOut = ` ${effect}`
+        if (effect !== '') effectOut = ` ${effect}`
 
-        const txtForCopy = `Оповещаем ${pre}${priorityOut}${effectOut} инциденте`
+        const txtForCopy = `Оповещаем ${pre}${priorityOut}${inside}${effectOut} инциденте`
 
         toGetAlert()
         CopyMarkdown({
@@ -51,7 +57,7 @@ const NotifyPerson = (props) => {
         let effectOut = ''
 
         if (priority !== null) priorityOut = ` ${priority}`
-        if (effect !== null) effectOut = ` ${effect}`
+        if (effect !== '') effectOut = ` ${effect}`
 
         toGetNotesForPerson(`Оповещаем ${pre}${priorityOut}${effectOut} инциденте`)
     // eslint-disable-next-line
@@ -73,7 +79,7 @@ const NotifyPerson = (props) => {
                 }
             </div>
             <div className="card-action summary__notifyPerson-txt">
-                <p>Оповещаем {pre} {priority} {effect} инциденте</p>
+                <p>Оповещаем {pre} {priority}{inside} {effect} инциденте</p>
             </div>
 
             <div className="txt-out__card-footer">

@@ -1,5 +1,8 @@
 import './cardItem.css'
 import {useEffect, useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {handlerSetIsInsideIncident} from "../../store/notifySlice";
+
 import TextareaAutosize from 'react-textarea-autosize';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +13,9 @@ import CopyMarkdown from "../copyMarkdown";
 const addZero = num => num <= 9 ? "0" + num : num;
 
 const CardItem = (props) => {
+    const dispatch = useDispatch()
+    const isInsideIncident = useSelector(state => state.notifyReducer.isInsideIncident)
+
     const {
         flagOpening = true,
 
@@ -37,7 +43,6 @@ const CardItem = (props) => {
         isStartDay = ''
     } = props
 
-    const [isChooseInside, setChooseInside] = useState(false)
     const [isOpsNumber, setOpsNumber] = useState('')
     const [isProblem, setProblem] = useState('')
     const [isNotes, setNotes] = useState('')
@@ -97,7 +102,7 @@ const CardItem = (props) => {
         CopyMarkdown({
             flagCard,
 
-            isChooseInside,
+            isInsideIncident,
             isInside,
 
             isProblem,
@@ -150,10 +155,6 @@ const CardItem = (props) => {
         })
     }
 
-    const onChooseInside = () => {
-        setChooseInside(!isChooseInside)
-    }
-
     const onWriteInput = (event) => {
         let {name, value} = event.target
 
@@ -202,7 +203,7 @@ const CardItem = (props) => {
     let classesForLabelInput = 'summary__chooseInsideLabel'
 
     let inside = null
-    if (isChooseInside) {
+    if (isInsideIncident) {
         inside = 'ВНУТРЕННИЙ'
         classesForCheckBox = classesForCheckBox + ' summary__checkBox-topCheckBox'
         classesForCardInside = 'card-title amber-text text-lighten-3'
@@ -223,9 +224,9 @@ const CardItem = (props) => {
     // componentDidUpdate
     // Поднять наверх ВНУТРЕННИЙ или нет
     useEffect(() => {
-        onCheckInside(isChooseInside)
+        onCheckInside(isInsideIncident)
     // eslint-disable-next-line
-    }, [isChooseInside])
+    }, [isInsideIncident])
 
     //Передать наверх данные из поля ПРОБЛЕМА
     // componentDidUpdate
@@ -278,13 +279,13 @@ const CardItem = (props) => {
                 effect={effect}
                 qualities={qualities}
 
-                isChooseInside={isChooseInside}
+                isInsideIncident={isInsideIncident}
                 isProblem={isProblem}
                 isOpsNumber={isOpsNumber}
                 isNotes={isNotes}
                 isWhoNotify={isWhoNotify}
 
-                onChooseInside={onChooseInside}
+                dispatch={dispatch}
                 onWriteInput={onWriteInput}
                 onWarningForOps={onWarningForOps}
 
@@ -312,7 +313,7 @@ const CardItem = (props) => {
             effect={effect}
             qualities={qualities}
 
-            isChooseInside={isChooseInside}
+            isInsideIncident={isInsideIncident}
             isNotesClosing={isNotesClosing}
             isProblemForAllCards={isProblemForAllCards}
             isOpsNumberAllCards={isOpsNumberAllCards}
@@ -344,13 +345,13 @@ const ViewOpening = (props) => {
         priority,
         effect,
 
-        isChooseInside,
+        isInsideIncident,
         isProblem,
         isOpsNumber,
         isNotes,
         isWhoNotify,
 
-        onChooseInside,
+        dispatch,
         onWriteInput,
         onWarningForOps,
 
@@ -381,8 +382,8 @@ const ViewOpening = (props) => {
                             type="checkbox"
                             name='inside'
                             className="filled-in summary__chooseInside"
-                            checked={isChooseInside}
-                            onChange={onChooseInside}
+                            checked={isInsideIncident}
+                            onChange={() => dispatch(handlerSetIsInsideIncident())}
                         />
                         <span>Внутренний</span>
                     </label>
