@@ -39,7 +39,7 @@ const NotifyPerson = (props) => {
         if (priority !== null) priorityOut = ` ${priority}`
         if (effect !== '') effectOut = ` ${effect}`
 
-        const txtForCopy = `Оповещаем ${pre}${priorityOut}${inside}${effectOut} инциденте`
+        const txtForCopy = `Оповещаем ${pre}${inside}${priorityOut}${effectOut} инциденте`
 
         toGetAlert()
         CopyMarkdown({
@@ -79,7 +79,7 @@ const NotifyPerson = (props) => {
                 }
             </div>
             <div className="card-action summary__notifyPerson-txt">
-                <p>Оповещаем {pre} {priority}{inside} {effect} инциденте</p>
+                <p>Оповещаем {pre}{inside} {priority} {effect} инциденте</p>
             </div>
 
             <div className="txt-out__card-footer">
