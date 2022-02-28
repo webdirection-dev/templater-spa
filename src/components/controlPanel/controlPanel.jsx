@@ -15,14 +15,19 @@ const ControlPanel = (props) => {
     const [isSelectTG, setSelectTG] = useState(null);
     const [isSelectPriority, setSelectPriority] = useState(null);
     const [isSelectEffect, setSelectEffect] = useState(null);
-    const [isEven, setEven] = useState(true);
+    // Разбить оповещаемых на чёт/нечёт
+    // const [isEven, setEven] = useState(true);
     const [isNotifyPerson, setNotifyPerson] = useState({
         // sokolov: true,
         markov: true,
         balamutin: true,
         zalygin: true,
-        novak: true,
-        suprun: false,
+        suprun: true,
+        novak: false,
+        // Разбить оповещаемых на чёт/нечёт
+        // suprun: false,
+        // novak: true,
+
     });
 
     const [nameAction, setNameAction] = useState('');
@@ -41,9 +46,10 @@ const ControlPanel = (props) => {
         setShowSetTimeClosing(!isShowSetTimeClosing)
     };
 
-    const onChangeInput = (event) => {
-        setEven(!isEven)
-    }
+    // Разбить оповещаемых на чёт/нечёт
+    // const onChangeInput = (event) => {
+    //     setEven(!isEven)
+    // }
 
     const onCheckBox = (event) => {
         const {name} = event.target
@@ -62,7 +68,6 @@ const ControlPanel = (props) => {
 
                 onShowSetTime={onShowSetTime}
                 onShowSetTimeClosing={onShowSetTimeClosing}
-                onChangeInput={onChangeInput}
                 onCheckBox={onCheckBox}
 
                 setQualities={setQualities}
@@ -79,8 +84,11 @@ const ControlPanel = (props) => {
                 isSelectPriority={isSelectPriority}
                 isSelectEffect={isSelectEffect}
                 isShowSetTimeClosing={isShowSetTimeClosing}
-                isEven={isEven}
                 isNotifyPerson={isNotifyPerson}
+
+                // Разбить оповещаемых на чёт/нечёт
+                // onChangeInput={onChangeInput}
+                // isEven={isEven}
             />
         )
     };
@@ -99,28 +107,29 @@ const ControlPanel = (props) => {
         // eslint-disable-next-line
     }, [isQualities, isStand, isSelectTG, isSelectPriority, isSelectEffect])
 
+    // Разбить оповещаемых на чёт/нечёт
     // componentDidUpdate
     // Контролирует состояние персон оповещения в зависимости от чет/нечет
-    useEffect(() => {
-        let newObj = {}
-
-        if (isEven) {
-             newObj = {
-                ...isNotifyPerson,
-                suprun: false,
-                novak: true
-            }
-        } else {
-            newObj = {
-                ...isNotifyPerson,
-                suprun: true,
-                novak: false
-            }
-        }
-
-        setNotifyPerson(newObj)
-    // eslint-disable-next-line
-    }, [isEven])
+    // useEffect(() => {
+    //     let newObj = {}
+    //
+    //     if (isEven) {
+    //          newObj = {
+    //             ...isNotifyPerson,
+    //             suprun: false,
+    //             novak: true
+    //         }
+    //     } else {
+    //         newObj = {
+    //             ...isNotifyPerson,
+    //             suprun: true,
+    //             novak: false
+    //         }
+    //     }
+    //
+    //     setNotifyPerson(newObj)
+    // // eslint-disable-next-line
+    // }, [isEven])
 
     // componentDidUpdate
     // передать наверх данные об оповещаемых персонах
@@ -163,8 +172,10 @@ const FormToSummary = (props) => {
         isSelectPriority,
         isSelectEffect,
 
-        isEven,
         isNotifyPerson,
+
+        // Разбить оповещаемых на чёт/нечёт
+        // isEven,
     } = props;
 
     let classesOpen = 'hide';
@@ -188,11 +199,12 @@ const FormToSummary = (props) => {
     let classesForLabelEffect = 'hide';
     if (isSelectEffect !== null) classesForLabelEffect = 'control-panel__label'
 
-    let classesForNotifyPersonEven = 'hide';
-    if (isEven) classesForNotifyPersonEven = 'control-panel__footer-even'
-
-    let classesForNotifyPersonEdd = 'hide';
-    if (!isEven) classesForNotifyPersonEdd = 'control-panel__footer-even'
+    // Разбить оповещаемых на чёт/нечёт
+    // let classesForNotifyPersonEven = 'hide';
+    // if (isEven) classesForNotifyPersonEven = 'control-panel__footer-even'
+    //
+    // let classesForNotifyPersonEdd = 'hide';
+    // if (!isEven) classesForNotifyPersonEdd = 'control-panel__footer-even'
 
     return (
         <div className='control-panel__actions'>
@@ -290,32 +302,33 @@ const FormToSummary = (props) => {
             </div>
 
             <div className={classesNotify}>
-                <div className="control-panel__footer control-panel__footer-notify">
-                    <div className='control-panel__footer-radio'>
-                        <label>
-                            <input
-                                name="whoNotify"
-                                type="radio"
-                                checked={isEven}
-                                value='even'
-                                onChange={onChangeInput}
-                            />
-                            <span>Чётные дни</span>
-                        </label>
-                    </div>
-                    <div className='control-panel__footer-radio'>
-                        <label>
-                            <input
-                                name="whoNotify"
-                                type="radio"
-                                checked={!isEven}
-                                value='odd'
-                                onChange={onChangeInput}
-                            />
-                            <span>Нечётные дни</span>
-                        </label>
-                    </div>
-                </div>
+                {/*Разбить оповещаемых на чёт/нечёт*/}
+                {/*<div className="control-panel__footer control-panel__footer-notify">*/}
+                {/*    <div className='control-panel__footer-radio'>*/}
+                {/*        <label>*/}
+                {/*            <input*/}
+                {/*                name="whoNotify"*/}
+                {/*                type="radio"*/}
+                {/*                checked={isEven}*/}
+                {/*                value='even'*/}
+                {/*                onChange={onChangeInput}*/}
+                {/*            />*/}
+                {/*            <span>Чётные дни</span>*/}
+                {/*        </label>*/}
+                {/*    </div>*/}
+                {/*    <div className='control-panel__footer-radio'>*/}
+                {/*        <label>*/}
+                {/*            <input*/}
+                {/*                name="whoNotify"*/}
+                {/*                type="radio"*/}
+                {/*                checked={!isEven}*/}
+                {/*                value='odd'*/}
+                {/*                onChange={onChangeInput}*/}
+                {/*            />*/}
+                {/*            <span>Нечётные дни</span>*/}
+                {/*        </label>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
                 <div className="control-panel__footer control-panel__footer-notify control-panel__footer-even">
                     {/*<label>*/}
@@ -361,18 +374,20 @@ const FormToSummary = (props) => {
                         <span>Михаил Залыгин</span>
                     </label>
 
-                    <label className={classesForNotifyPersonEven}>
-                        <input
-                            type="checkbox"
-                            className="filled-in"
-                            name='novak'
-                            checked={isNotifyPerson.novak}
-                            onChange={onCheckBox}
-                        />
-                        <span>Владислав Новак</span>
-                    </label>
+                    {/*Разбить оповещаемых на чёт/нечёт*/}
+                    {/*<label className={classesForNotifyPersonEven}>*/}
+                    {/*    <input*/}
+                    {/*        type="checkbox"*/}
+                    {/*        className="filled-in"*/}
+                    {/*        name='novak'*/}
+                    {/*        checked={isNotifyPerson.novak}*/}
+                    {/*        onChange={onCheckBox}*/}
+                    {/*    />*/}
+                    {/*    <span>Владислав Новак</span>*/}
+                    {/*</label>*/}
 
-                    <label className={classesForNotifyPersonEdd}>
+                    <label className='control-panel__footer-even'>
+                    {/*<label className={classesForNotifyPersonEdd}>*/}
                         <input
                             type="checkbox"
                             className="filled-in"
