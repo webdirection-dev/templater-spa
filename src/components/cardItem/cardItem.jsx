@@ -22,7 +22,7 @@ const CardItem = (props) => {
         isDataForCard = Object.prototype,
 
         onCheckInside = Function.prototype,
-        isInside = false,
+        // isInside = false,
         getProblemForAllCards = Function.prototype,
         isProblemForAllCards = null,
         getOpsNumberForAllCards = Function.prototype,
@@ -99,11 +99,12 @@ const CardItem = (props) => {
 
     const toCopyMarkdown = (flagCard) => {
         toGetAlert()
+
         CopyMarkdown({
             flagCard,
 
             isInsideIncident,
-            isInside,
+            // isInside,
 
             isProblem,
             isProblemForAllCards,
@@ -216,13 +217,8 @@ const CardItem = (props) => {
     let classesIfPrimary = 'form__input orange darken-1 summary__ops-input'
     if (isPrimary) classesIfPrimary = 'form__input summary__ops-input summary__ops-input-colors'
 
-    if (isInside) {
-        inside = 'ВНУТРЕННИЙ'
-        classesForCardInside = 'card-title'
-    }
-
     // componentDidUpdate
-    // Поднять наверх ВНУТРЕННИЙ или нет
+
     useEffect(() => {
         onCheckInside(isInsideIncident)
     // eslint-disable-next-line

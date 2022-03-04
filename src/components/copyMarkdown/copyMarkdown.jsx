@@ -3,8 +3,7 @@ import useDateHook from "../hooks/getDate";
 const CopyMarkdown = ({
                           flagCard = '',
 
-                          isChooseInside = false,
-                          isInside = false,
+                          isInsideIncident = false,
 
                           isProblem = '',
                           isProblemForAllCards,
@@ -36,6 +35,7 @@ const CopyMarkdown = ({
                           dayClose = '',
 
                       }) => {
+
     const {
         qualities,
         stand,
@@ -45,10 +45,10 @@ const CopyMarkdown = ({
     } = isDataForCard
 
     let insideOpen = ''
-    if (isChooseInside) insideOpen = `**ВНУТРЕННИЙ**\n`
+    if (isInsideIncident) insideOpen = `**ВНУТРЕННИЙ**\n`
 
     let inside = ''
-    if (isInside) inside = `**ВНУТРЕННИЙ**\n`
+    if (isInsideIncident) inside = `**ВНУТРЕННИЙ**\n`
 
     // готовим данные из массива объектов для одной строки
     let tgForTable = ''
@@ -114,7 +114,6 @@ const CopyMarkdown = ({
         `${personNotify}` +
         `\n${txtForCopy}`
     )
-
     const strUpdate = (
         `${inside}` +
         `**Инцидент в работе**` +
